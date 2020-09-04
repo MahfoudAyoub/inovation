@@ -1,3 +1,4 @@
+<?php include("path.php") ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +18,7 @@
 
 <body>
 
-  <?php include("app/includes/header.php"); ?>
+  <?php include(ROOT_PATH . "/app/includes/header.php"); ?>
 
   <!-- Page wrapper -->
   <div class="page-wrapper">
@@ -186,7 +187,7 @@
   <!-- // page wrapper -->
 
   <!-- FOOTER -->
-  <?php include("app/includes/footer.php"); ?>
+  <?php include(ROOT_PATH . "/app/includes/footer.php"); ?>
   <!-- // FOOTER -->
 
 

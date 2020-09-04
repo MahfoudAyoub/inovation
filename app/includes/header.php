@@ -1,14 +1,14 @@
 <!-- header -->
 <header class="clearfix">
     <div class="logo">
-      <a href="index.php">
+      <a href="<?php echo BASE_URL . '/index.php' ?>">
         <h1 class="logo-text"><span>Awa</span>Inspires</h1>
       </a>
     </div>
     <div class="fa fa-reorder menu-toggle"></div>
     <nav>
       <ul>
-        <li><a href="index.php">Home</a></li>
+        <li><a href="<?php echo BASE_URL . '/index.php' ?>">Home</a></li>
         <li><a href="#">About</a></li>
         <li><a href="#">Services</a></li>
         <!-- <li><a href="register.php">Sign up</a></li>

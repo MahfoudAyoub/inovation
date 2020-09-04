@@ -1,3 +1,5 @@
+<?php include("path.php"); ?>
+<?php include(ROOT_PATH ."/app/controllers/users.php");?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,15 +20,23 @@
 <body>
 
   <!-- header -->
-  <?php include("app/includes/header.php"); ?>
+  <?php include(ROOT_PATH . "/app/includes/header.php"); ?>
   <!-- // header -->
 
   <div class="auth-content">
     <form action="register.php" method="post">
       <h3 class="form-title">Register</h3>
-      <!-- <div class="msg error">
-        <li>Username required</li>
-      </div> -->
+
+      <?php if(count($errors) > 0):?>
+        <div class="msg error">
+          <?php foreach($errors as $error ): ?>
+            <li><?php echo $error;?></li>
+          <?php endforeach; ?>
+        </div>
+      <?php endif; ?>
+
+
+       
       <div>
         <label>Username</label>
         <input type="text" name="username" class="text-input">
@@ -46,7 +56,7 @@
       <div>
         <button type="submit" name="register-btn" class="btn">Register</button>
       </div>
-      <p class="auth-nav">Or <a href="login.php">Sign In</a></p>
+      <p class="auth-nav">Or <a href=" <?php echo BASE_URL . '/login.php' ?>">Sign In</a></p>
     </form>
   </div>
 
