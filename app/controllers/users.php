@@ -1,29 +1,21 @@
-<?php 
+<?php
+
+
 
 include(ROOT_PATH . "/app/database/db.php");
+include(ROOT_PATH . "/app/helpers/validateUser.php");
 
 // variable declaration
 $username = "";
 $email    = "";
 $password = "";
 $passwordConf = "";
-$errors = array(); 
+$errors = array();
 
 
 if (isset($_POST['register-btn'])) {
 
-    if (empty($_POST['username'])) { 
-        array_push($errors, "Uhmm...We gonna need your username"); 
-    }
-    if (empty($_POST['email'])) { 
-        array_push($errors, "Oops.. Email is missing"); 
-    }
-    if (empty($_POST['password'])) { 
-        array_push($errors, "uh-oh you forgot the password"); 
-    }
-    if ($_POST['password'] != $_POST['passwordConf']) {
-    array_push($errors, "The two passwords do not match");
-    }
+    $errors = validateUser($_POST);
 
     if (count($errors) == 0) {
         unset($_POST['register-btn'], $_POST['passwordConf']);
@@ -32,10 +24,26 @@ if (isset($_POST['register-btn'])) {
         $user_id = create('users', $_POST);
         $user = selectOne('users', ['id' => $user_id]);
 
-    }
-    else{
 
-    }
+        // LOG USER IN
+        $_SESSION['id'] = $user['id']; 
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['admin'] = $user['admin'];
+        $_SESSION['message'] = 'You are now logged in';
+        $_SESSION['type'] = 'success';
 
-    
+        if($_SESSION['admin']){
+            header('location: ' . BASE_URL . '/admin/dashboard.php');
+        }else{
+            header('location: ' . BASE_URL . '/index.php');
+        }
+        exit();
+
+        
+    } else {
+        $username = $_POST['username'];
+        $email    = $_POST['email'];
+        $password = $_POST['password'];
+        $passwordConf = $_POST['passwordConf'];
+    }
 }

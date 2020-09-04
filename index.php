@@ -1,4 +1,8 @@
-<?php include("path.php") ?>
+<?php
+include("path.php");
+include(ROOT_PATH . "/app/database/db.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,12 +17,15 @@
   <!-- Custom Styles -->
   <link rel="stylesheet" href="assets/css/style.css">
 
-  <title>Awa Inspires Blog</title>
+  <title>ART-MODE</title>
 </head>
 
 <body>
 
-  <?php include(ROOT_PATH . "/app/includes/header.php"); ?>
+<?php include(ROOT_PATH . "/app/includes/header.php"); ?>
+<?php include(ROOT_PATH . "/app/includes/messages.php"); ?>
+
+  
 
   <!-- Page wrapper -->
   <div class="page-wrapper">

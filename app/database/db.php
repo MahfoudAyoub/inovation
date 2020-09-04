@@ -1,4 +1,5 @@
 <?php
+session_start();
 require('connect.php');
 
 
@@ -55,7 +56,7 @@ function selectOne($table, $conditions){
     $sql = $sql . " LIMIT 1";
 
     $stmt = executeQuery($sql, $conditions);
-    $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    $records = $stmt->get_result()->fetch_assoc();
     return $records;
 }
 
