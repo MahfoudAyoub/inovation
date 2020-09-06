@@ -42,7 +42,7 @@
       </div>
       <div class="">
         <h2 style="text-align: center;">Update Topic</h2>
-
+        <?php include(ROOT_PATH . "/app/helpers/formErrors.php"); ?>
         <form action="edit.php" method="post">
         <input type="hidden" name="id" value="<?php echo $id; ?>" >
 
@@ -52,7 +52,7 @@
           </div>
           <div class="input-group">
             <label>Description</label>
-            <textarea class="text-input" name="description" id="description"><?php echo $description; ?></textarea>
+            <textarea class="text-input" name="description" id="body"><?php echo $description; ?></textarea>
           </div>
           <div class="input-group">
             <button type="submit" name="update-topic" class="btn" >Update Topic</button>

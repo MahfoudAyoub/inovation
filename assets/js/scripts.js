@@ -44,7 +44,7 @@ $(document).ready(function () {
 
 
 ClassicEditor
-  .create(document.querySelector('#description'), {
+  .create(document.querySelector('#body'), {
     toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote'],
     heading: {
       options: [
