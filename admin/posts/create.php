@@ -43,7 +43,8 @@ include(ROOT_PATH . "/app/controllers/posts.php");
       <div class="">
         <h2 style="text-align: center;">Create Post</h2>
         <?php include(ROOT_PATH . "/app/helpers/formErrors.php"); ?>
-        <form action="create.php" method="post">
+
+        <form action="create.php" method="post" enctype="multipart/form-data" >
 
           <div class="input-group">
             <label>Title</label>
@@ -52,7 +53,7 @@ include(ROOT_PATH . "/app/controllers/posts.php");
 
           <div>
             <label>Body</label>
-            <textarea  name="body" id="body"><?php echo $body; ?></textarea>
+            <textarea name="body" id="body"><?php echo $body; ?></textarea>
           </div>
 
           <div>
@@ -68,19 +69,26 @@ include(ROOT_PATH . "/app/controllers/posts.php");
               <?php foreach ($topics as $key => $topic) : ?>
 
                 <?php if (!empty($topic_id) && $topic_id == $topic['id']) : ?>
-                  <option selected value="<?php echo $topic['name'] ?>"><?php echo $topic['name'] ?></option>
+                  <option selected value="<?php echo $topic['id'] ?>"><?php echo $topic['name'] ?></option>
                 <?php else : ?>
-                  <option value="<?php echo $topic['name'] ?>"><?php echo $topic['name'] ?></option>
+                  <option value="<?php echo $topic['id'] ?>"><?php echo $topic['name'] ?></option>
                 <?php endif; ?>
 
               <?php endforeach; ?>
             </select>
           </div>
-
-          <div class="input-group">
-            <label>
-              <input type="checkbox" name="published" /> Publish</label>
-          </div>
+          
+          <?php if (empty($published)) : ?>
+            <div class="input-group">
+              <label>
+                <input type="checkbox" name="published" /> Publish</label>
+            </div>
+          <?php else : ?>
+            <div class="input-group">
+              <label>
+                <input type="checkbox" name="published" checked /> Publish</label>
+            </div>
+          <?php endif; ?>
 
           <div class="input-group">
             <button type="submit" name="add-post" class="btn">Save Post</button>
