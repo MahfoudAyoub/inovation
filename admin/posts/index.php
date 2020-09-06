@@ -58,8 +58,8 @@ include(ROOT_PATH . "/app/controllers/posts.php");
               <td><?php echo $key+1 ?></td>
               <td><a href="#"><?php echo $post['title'] ?></a></td>
               <td>Awa</td>
-              <td><a href="edit.php" class="edit">Edit</a></td>
-              <td><a href="#" class="delete">Delete</a></td>
+              <td><a href="edit.php?id=<?php echo $post['id']; ?>" class="edit">Edit</a></td>
+              <td><a href="edit.php?del_id=<?php echo $post['id']; ?>" class="delete">Delete</a></td>
               <?php if($post['published']): ?> 
                 <td><a href="#" class="unpublish">Unpublish</a></td>
               <?php else: ?>

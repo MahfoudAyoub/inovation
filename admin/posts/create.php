@@ -78,6 +78,7 @@ include(ROOT_PATH . "/app/controllers/posts.php");
             </select>
           </div>
           
+          <div>
           <?php if (empty($published)) : ?>
             <div class="input-group">
               <label>
@@ -89,6 +90,7 @@ include(ROOT_PATH . "/app/controllers/posts.php");
                 <input type="checkbox" name="published" checked /> Publish</label>
             </div>
           <?php endif; ?>
+          </div>
 
           <div class="input-group">
             <button type="submit" name="add-post" class="btn">Save Post</button>
