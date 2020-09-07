@@ -14,13 +14,13 @@ a {
 }
 
 a:hover, a:active {
-  color: #008489;
+  color: #C101FF;
 }
 
 .logo-text, h1, h2, h3, h4, h5, h6 {
   font-family: 'Candal', sans-serif;
   margin: 5px;
-  color: #5c5b5b;
+  color: #C101FF;
   font-weight: normal;
 }
 
@@ -46,9 +46,9 @@ a:hover, a:active {
 }
 
 .success {
-  color: #3a6e3a;
+  color: #C101FF;
   background: #bcf5bc;
-  border: 1px solid #3a6e3a;
+  border: 1px solid #C101FF;
 }
 
 .btn {
@@ -62,7 +62,7 @@ a:hover, a:active {
   font-size: 1rem;
   line-height: 1.5;
   border-radius: .25rem;
-  background: #008489;
+  background: #C101FF;
   color: #fff;
 }
 
@@ -74,7 +74,7 @@ a:hover, a:active {
 
 .btn:hover {
   cursor: pointer;
-  background: #00767a;
+  background: #C101FF;
 }
 
 .input-group {
@@ -115,7 +115,7 @@ a:hover, a:active {
 /* NAVBAR */
 
 header {
-  background: #008489;
+  background: #C101FF;
   color: #ffffff;
   height: 66px;
 }
@@ -162,7 +162,7 @@ header nav ul li a {
 }
 
 header nav ul li a:hover {
-  background: #006669;
+  background: #C101FF;
   transition: 0.5s;
 }
 
@@ -542,7 +542,7 @@ header nav ul .userinfo i.fa-chevron-down {
 
 .footer .footer-content .contact-form-div .send-msg-btn {
   float: right;
-  background: #008489;
+  background: #C101FF;
   color: #d3d3d3;
   cursor: pointer;
   border: none;

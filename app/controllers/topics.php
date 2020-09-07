@@ -1,7 +1,7 @@
 <?php
 include(ROOT_PATH . "/app/database/db.php");
 include(ROOT_PATH . "/app/helpers/validateTopic.php");
-
+include(ROOT_PATH . "/app/helpers/midleware.php");
 $table = 'topics';
 $errors = array();
 $id = '';

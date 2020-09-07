@@ -1,7 +1,6 @@
 <?php
 include("path.php");
 include(ROOT_PATH . "/app/controllers/users.php");
-include(ROOT_PATH . "/app/helpers/midleware.php");
 guestsOnly();
 ?>
 
@@ -18,6 +17,32 @@ guestsOnly();
 
   <!-- Custom CSS -->
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/headerStyle.css">
+  <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $(".profile .icon_wrap").click(function() {
+        $(this).parent().toggleClass("active");
+        $(".notifications").removeClass("active");
+      });
+
+      $(".notifications .icon_wrap").click(function() {
+        $(this).parent().toggleClass("active");
+        $(".profile").removeClass("active");
+      });
+
+      $(".show_all .link").click(function() {
+        $(".notifications").removeClass("active");
+        $(".popup").show();
+      });
+
+      $(".close").click(function() {
+        $(".popup").hide();
+      });
+    });
+  </script>
+
 
   <title>Login</title>
 </head>
@@ -25,7 +50,7 @@ guestsOnly();
 <body>
 
   <!-- header -->
-  <?php include(ROOT_PATH . "/app/includes/header.php"); ?>
+  <?php include(ROOT_PATH . "/app/includes/homeHeader.php"); ?>
   <!-- // header -->
 
   <div class="auth-content">
