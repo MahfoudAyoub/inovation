@@ -1,7 +1,8 @@
 <?php
 include("../../path.php");
 include(ROOT_PATH . "/app/controllers/users.php");
-
+include(ROOT_PATH . "/app/helpers/midleware.php");
+adminOnly();
 ?>
 
 <!DOCTYPE html>
@@ -50,7 +51,7 @@ include(ROOT_PATH . "/app/controllers/users.php");
         <table>
           <thead>
             <th>N</th>
-            <th>Manager's Name</th>
+            <th>UserName</th>
             <th>Email</th>
             <th colspan="3">Action</th>
           </thead>

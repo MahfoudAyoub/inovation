@@ -6,11 +6,18 @@ include(ROOT_PATH . "/app/controllers/topics.php");
 $posts = array();
 $postTitle = 'Recent Posts';
 
+//fetching posts by topic
+if (isset($_GET['t_id'])) {
+  $posts = getPostByTopicId($_GET['t_id']);
+  $postTitle = "You Searched For Posts under '" . $_GET['name'] . "' :";
+}
 //searching
-if(isset($_POST['search-term'])){
+else if (isset($_POST['search-term'])) {
   $postTitle = "You Searched For '" . $_POST['search-term'] . "' :";
   $posts = searchPosts($_POST['search-term']);
-}else{
+} 
+//get all published posts from database 
+else {
   $posts = getPublishedPost();
 }
 ?>
@@ -55,7 +62,7 @@ if(isset($_POST['search-term'])){
             <div class="inner-post">
               <img src="<?php echo BASE_URL . '/assets/images/' . $post['image']; ?>" alt="" style="height: 200px; width: 100%; border-top-left-radius: 5px; border-top-right-radius: 5px;">
               <div class="post-info">
-                <h4><a href="single.php"><?php echo $post['title']; ?></a></h3>
+                <h4><a href="single.php?id=<?php echo $post['id']; ?>"><?php echo $post['title']; ?></a></h3>
                   <div>
                     <i class="fa fa-user-o"></i> <?php echo $post['username']; ?>
                     &nbsp;
@@ -80,7 +87,7 @@ if(isset($_POST['search-term'])){
             <img src="<?php echo BASE_URL . '/assets/images/' . $post['image']; ?>" class="post-image" alt="">
             <div class="post-content">
 
-              <h2 class="post-title"><a href="#"><?php echo $post['title']; ?></a></h2>
+              <h2 class="post-title"><a href="single.php?id=<?php echo $post['id']; ?>"><?php echo $post['title']; ?></a></h2>
 
               <div class="post-info">
                 <i class="fa fa-user-o"></i> <?php echo $post['username']; ?>
@@ -89,7 +96,7 @@ if(isset($_POST['search-term'])){
               </div>
               <p class="post-body"><?php echo  html_entity_decode(substr($post['body'], 0, 150) . '...'); ?>
               </p>
-              <a href="#" class="read-more">Read More</a>
+              <a href="single.php?id=<?php echo $post['id']; ?>" class="read-more">Read More</a>
             </div>
           </div>
         <?php endforeach; ?>
@@ -109,7 +116,7 @@ if(isset($_POST['search-term'])){
           <h2 class="section-title">Topics</h2>
           <ul>
             <?php foreach ($topics as $key => $topic) : ?>
-              <li><a href="#"><?php echo $topic['name']; ?></a></li>
+              <li><a href="<?php echo BASE_URL . '/index.php?t_id=' . $topic['id'] . '&name=' . $topic['name'] ?>"><?php echo $topic['name']; ?></a></li>
             <?php endforeach; ?>
 
           </ul>

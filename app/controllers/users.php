@@ -13,7 +13,7 @@ $passwordConf = "";
 $table = 'users';
 $errors = array();
 
-$admin_users = selectAll($table, ['admin' => 1]);
+$admin_users = selectAll($table);
 
 function loginUser($user)
 {
@@ -65,6 +65,7 @@ if (isset($_POST['register-btn']) || isset($_POST['create-admin'])) {
 
 
 if (isset($_POST['update-user'])) {
+    adminOnly();
     $errors = validateUser($_POST);
 
     if (count($errors) == 0) {
@@ -92,7 +93,7 @@ if (isset($_GET['id'])) {
     $user = selectOne($table, ['id' => $_GET['id']]);
     $id = $user['id'];
     $username = $user['username'];
-    $admin = isset($user['admin']) ? 1 : 0;
+    $admin = $user['admin'];
     $email    = $user['email'];
 }
 
@@ -116,6 +117,7 @@ if (isset($_POST['login-btn'])) {
 
 
 if (isset($_GET['delete_id'])) {
+    adminOnly();
     $count = delete($table, $_GET['delete_id']);
     $_SESSION['message'] = 'Admin user deleted successfully';
     $_SESSION['type'] = 'success';
