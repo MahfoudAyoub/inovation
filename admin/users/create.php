@@ -1,5 +1,7 @@
 <?php
 include("../../path.php");
+include(ROOT_PATH . "/app/controllers/users.php");
+
 ?>
 
 
@@ -44,34 +46,39 @@ include("../../path.php");
         <h2 style="text-align: center;">Create User</h2>
 
         <form action="create.php" method="post">
-          <!-- <div class="msg error">
-            <li>Username required</li>
-          </div> -->
+          <?php include(ROOT_PATH . "/app/helpers/formErrors.php"); ?>
+
           <div class="input-group">
             <label>Username</label>
-            <input type="text" name="username" class="text-input">
+            <input type="text" name="username" value="<?php echo $username; ?>" class="text-input">
           </div>
           <div class="input-group">
             <label>Email</label>
-            <input type="email" name="email" class="text-input">
+            <input type="email" name="email" value="<?php echo $email; ?>" class="text-input">
           </div>
           <div class="input-group">
             <label>Password</label>
-            <input type="password" name="password" class="text-input">
+            <input type="password" name="password" value="<?php echo $password ?>" ; class="text-input">
           </div>
           <div class="input-group">
             <label>Confirm Password</label>
-            <input type="password" name="passwordConf" class="text-input">
+            <input type="password" name="passwordConf" value="<?php echo $password ?>" ; class="text-input">
           </div>
           <div class="input-group">
-            <label>Role</label>
-            <select class="text-input" name="role">
-              <option value="user">User</option>
-              <option value="admin">Admin</option>
-            </select>
+
+            <?php if (isset($admin) && $admin == 1) : ?>
+              <label>
+                <input type="checkbox" name="admin" checked>Admin
+              </label>
+            <?php else : ?>
+              <label>
+                <input type="checkbox" name="admin">Admin
+              </label>
+            <?php endif; ?>
+
           </div>
           <div class="input-group">
-            <button type="submit" name="save-user" class="btn">Save User</button>
+            <button type="submit" name="create-admin" class="btn">Save User</button>
           </div>
         </form>
 

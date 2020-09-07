@@ -3,7 +3,8 @@ session_start();
 require('connect.php');
 
 
-function executeQuery($sql, $data){
+function executeQuery($sql, $data)
+{
     global $conn;
     $stmt = $conn->prepare($sql);
     $values = array_values($data);
@@ -14,7 +15,8 @@ function executeQuery($sql, $data){
 }
 
 
-function selectAll($table, $conditions = []){
+function selectAll($table, $conditions = [])
+{
     global $conn;
     $sql = "SELECT * FROM $table";
     if (empty($conditions)) {
@@ -39,7 +41,8 @@ function selectAll($table, $conditions = []){
 }
 
 
-function selectOne($table, $conditions){
+function selectOne($table, $conditions)
+{
     global $conn;
     $sql = "SELECT * FROM $table";
 
@@ -61,7 +64,8 @@ function selectOne($table, $conditions){
 }
 
 
-function create($table, $data){
+function create($table, $data)
+{
     global $conn;
     $sql = "INSERT INTO $table SET ";
     $i = 0;
@@ -80,7 +84,8 @@ function create($table, $data){
 }
 
 
-function update($table, $id, $data){
+function update($table, $id, $data)
+{
     global $conn;
     $sql = "UPDATE $table SET ";
     $i = 0;
@@ -100,10 +105,39 @@ function update($table, $id, $data){
 }
 
 
-function delete($table, $id){
+function delete($table, $id)
+{
     global $conn;
     $sql = "DELETE FROM $table WHERE id=? ";
-   
+
     $stmt = executeQuery($sql, ['id' => $id]);
     return $stmt->affected_rows;
+}
+
+
+function getPublishedPost()
+{
+    global $conn;
+    $sql = "SELECT p.*, u.username FROM posts AS p JOIN users AS u ON p.user_id = u.id WHERE published = ?";
+    $stmt = executeQuery($sql, ['published' => 1]);
+    $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    return $records;
+}
+
+
+function searchPosts($term)
+{
+    global $conn;
+    $match = '%' .$term. '%';
+
+    $sql = "SELECT p.*, u.username 
+            FROM posts AS p 
+            JOIN users AS u ON p.user_id = u.id 
+            WHERE published = ?
+            AND p.title LIKE ?
+            OR p.body LIKE ? ";
+
+    $stmt = executeQuery($sql, ['published' => 1, 'title' => $match, 'body' => $match]);
+    $records = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    return $records;
 }

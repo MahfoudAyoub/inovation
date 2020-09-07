@@ -23,6 +23,16 @@ function validateUser($user)
         array_push($errors, "Email aleady exists");
     }
 
+    $existingUser = selectOne('users', ['email' => $user['email']]);
+    if ($existingUser) {
+        if (isset($user['update-user']) && $existingUser['id'] != $user['id']) {
+            array_push($errors, "Email aleady exists");
+        }
+        if (isset($user['create-admin'])) {
+            array_push($errors, "Email aleady exists");
+        }
+    }
+
     return $errors;
 }
 

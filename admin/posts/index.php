@@ -1,6 +1,7 @@
 <?php
 include("../../path.php");
 include(ROOT_PATH . "/app/controllers/posts.php");
+$posts = getPublishedPost();
 ?>
 
 
@@ -57,14 +58,17 @@ include(ROOT_PATH . "/app/controllers/posts.php");
             <tr class="rec">
               <td><?php echo $key+1 ?></td>
               <td><a href="#"><?php echo $post['title'] ?></a></td>
-              <td>Awa</td>
+              <td><?php echo $post['username']; ?></td>
+
               <td><a href="edit.php?id=<?php echo $post['id']; ?>" class="edit">Edit</a></td>
               <td><a href="edit.php?del_id=<?php echo $post['id']; ?>" class="delete">Delete</a></td>
+
               <?php if($post['published']): ?> 
-                <td><a href="#" class="unpublish">Unpublish</a></td>
+                <td><a href="edit.php?published=0&p_id=<?php echo $post['id'] ?>" class="unpublish">unpublish</a></td>
               <?php else: ?>
-                <td><a href="#" class="publish">Publish</a></td>
-              <?php endif; ?>   
+                <td><a href="edit.php?published=1&p_id=<?php echo $post['id'] ?>" class="publish">publish</a></td>
+              <?php endif; ?>  
+               
             </tr>
             <?php endforeach; ?>
            
