@@ -1,69 +1,49 @@
-<!-- FOOTER -->
-<div class="footer">
-    <div class="footer-content">
-      <div class="footer-section about">
-        <h1 class="logo-text">Awa<span>Inspires</span></h1>
-        <p>
-          AwaInspires is a fictional blog conceived for the purpose
-          of a tutorial on YouTube. However, Awa has a blog called pieceofadvice.org
-          where he writes truly inspiring stuff.
-        </p>
-        <!-- <br> -->
-
-        <div class="contact">
-          <i class="fa fa-phone"> &nbsp; 123-456-789</i>
-          <i class="fa fa-envelope"> &nbsp; info@mywebsite.com</i>
+<footer class="footer">
+        <div class="container">
+            <div class="about-us" data-aos="fade-right" data-aos-delay="200">
+                <h2>About us</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium quia atque nemo ad modi officiis
+                    iure, autem nulla tenetur repellendus.</p>
+            </div>
+            <div class="newsletter" data-aos="fade-right" data-aos-delay="200">
+                <h2>Newsletter</h2>
+                <p>Stay update with our latest</p>
+                <div class="form-element">
+                    <input type="text" placeholder="Email"><span><i class="fas fa-chevron-right"></i></span>
+                </div>
+            </div>
+            <div class="instagram" data-aos="fade-left" data-aos-delay="200">
+                <h2>Instagram</h2>
+                <div class="flex-row">
+                    <img src="assets/images/instagram/thumb-card3.png" alt="insta1">
+                    <img src="assets/images/instagram/thumb-card4.png" alt="insta2">
+                    <img src="assets/images/instagram/thumb-card5.png" alt="insta3">
+                </div>
+                <div class="flex-row">
+                    <img src="assets/images/instagram/thumb-card6.png" alt="insta4">
+                    <img src="assets/images/instagram/thumb-card7.png" alt="insta5">
+                    <img src="assets/images/instagram/thumb-card8.png" alt="insta6">
+                </div>
+            </div>
+            <div class="follow" data-aos="fade-left" data-aos-delay="200">
+                <h2>Follow us</h2>
+                <p>Let us be Social</p>
+                <div>
+                    <i class="fab fa-facebook-f"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-youtube"></i>
+                </div>
+            </div>
         </div>
-
-        <div class="social">
-          <a href="#"><i class="fa fa-facebook"></i></a>
-          <a href="#"><i class="fa fa-instagram"></i></a>
-          <a href="#"><i class="fa fa-twitter"></i></a>
-          <a href="#"><i class="fa fa-youtube-play"></i></a>
+        <div class="rights flex-row">
+            <h4 class="text-gray">
+                Copyright ©2019 All rights reserved | made by
+                <a href="www.youtube.com/c/dailytuition" target="_black">Daily Tuition <i class="fab fa-youtube"></i>
+                    Channel</a>
+            </h4>
         </div>
-
-      </div>
-
-      <div class="footer-section quick-links">
-        <h2>QUICK LINKS</h2>
-        <ul>
-          <a href="#">
-            <li>Events</li>
-          </a>
-          <a href="#">
-            <li>Contact</li>
-          </a>
-          <a href="#">
-            <li>Mentors</li>
-          </a>
-          <a href="#">
-            <li>Galleries</li>
-          </a>
-          <a href="#">
-            <li>Write for us</li>
-          </a>
-          <a href="#">
-            <li>Terms and conditions</li>
-          </a>
-        </ul>
-      </div>
-
-      <div class="footer-section contact-form-div">
-        <h2>Contact Us</h2>
-        <br>
-        <form action="index.php" method="post">
-          <input type="text" name="email-address" class="text-input contact-input" placeholder="Your email address">
-          <textarea name="message" cols="30" rows="3" class="text-input contact-input" placeholder="Message..."></textarea>
-          <button type="submit" name="send-msg-btn" class="send-msg-btn">
-            <i class="fa fa-send"></i> Send
-          </button>
-        </form>
-      </div>
-
-    </div>
-
-    <div class="footer-bottom">
-      <p>© Coding Poets | Designed by Awa Melvine</p>
-    </div>
-  </div>
-  <!-- // FOOTER -->
+        <div class="move-up">
+            <span><i class="fas fa-arrow-circle-up fa-2x"></i></span>
+        </div>
+    </footer>

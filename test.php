@@ -97,7 +97,7 @@ else {
 
         <!-- --------------------- Blog Carousel ----------------- -->
 
-        <section >
+        <section style="background-image: url('assets/images/back8.jpg');background-size: cover;background-position: center;">
 
             <div class="blog">
 
@@ -129,7 +129,7 @@ else {
 
         <!-- ---------------------- Site Content -------------------------->
 
-        <section class="container" >
+        <section class="container" style="background-image: url('assets/images/.jpg'); ">
             <h2><?php echo $postTitle; ?></h2>
             <div class="site-content">
                 <div class="posts">
@@ -168,6 +168,8 @@ else {
 
                 <aside class="sidebar">
                     <!-- Search -->
+            
+
                     <div class="category">
                         <ul class="search-div">
                             <h2>Search</h2>

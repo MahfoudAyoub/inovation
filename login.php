@@ -70,7 +70,7 @@ guestsOnly();
         <input type="password" name="password" value="<?php echo $password; ?>" class="text-input">
       </div>
       <div>
-        <button type="submit" name="login-btn" class="btn">Login</button>
+        <button type="submit" name="login-btn" class="btn1">Login</button>
       </div>
       <p class="auth-nav">Or <a href="<?php echo BASE_URL . '/register.php' ?>">Sign Up</a></p>
     </form>

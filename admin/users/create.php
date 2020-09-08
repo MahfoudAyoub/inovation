@@ -21,6 +21,31 @@ adminOnly();
 
   <!-- Admin Styling -->
   <link rel="stylesheet" href="../../assets/css/admin.css">
+  <link rel="stylesheet" href="../../assets/css/headerStyle.css">
+  <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $(".profile .icon_wrap").click(function() {
+        $(this).parent().toggleClass("active");
+        $(".notifications").removeClass("active");
+      });
+
+      $(".notifications .icon_wrap").click(function() {
+        $(this).parent().toggleClass("active");
+        $(".profile").removeClass("active");
+      });
+
+      $(".show_all .link").click(function() {
+        $(".notifications").removeClass("active");
+        $(".popup").show();
+      });
+
+      $(".close").click(function() {
+        $(".popup").hide();
+      });
+    });
+  </script>
 
   <title>Admin - Create Admin User</title>
 </head>
@@ -31,20 +56,21 @@ adminOnly();
   <?php include(ROOT_PATH . "/app/includes/adminHeader.php"); ?>
   <!-- // header -->
 
-  <div class="admin-wrapper clearfix">
+  <div class="admin-wrapper">
     <!-- Left Sidebar -->
     <?php include(ROOT_PATH . "/app/includes/adminSidebar.php"); ?>
     <!-- // Left Sidebar -->
 
     <!-- Admin Content -->
-    <div class="admin-content clearfix">
+    <div class="admin-content">
+
       <div class="button-group">
         <a href="create.php" class="btn btn-sm">Add User</a>
         <a href="index.php" class="btn btn-sm">Manage Users</a>
       </div>
-      <div class="">
-        <h2 style="text-align: center;">Create User</h2>
 
+      <div>
+        <h2 style="text-align: center;">Create User</h2>
         <form action="create.php" method="post">
           <?php include(ROOT_PATH . "/app/helpers/formErrors.php"); ?>
 
@@ -81,8 +107,8 @@ adminOnly();
             <button type="submit" name="create-admin" class="btn">Save User</button>
           </div>
         </form>
-
       </div>
+
     </div>
     <!-- // Admin Content -->
 

@@ -20,6 +20,31 @@ adminOnly();
 
   <!-- Admin Styling -->
   <link rel="stylesheet" href="../../assets/css/admin.css">
+  <link rel="stylesheet" href="../../assets/css/headerStyle.css">
+  <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $(".profile .icon_wrap").click(function() {
+        $(this).parent().toggleClass("active");
+        $(".notifications").removeClass("active");
+      });
+
+      $(".notifications .icon_wrap").click(function() {
+        $(this).parent().toggleClass("active");
+        $(".profile").removeClass("active");
+      });
+
+      $(".show_all .link").click(function() {
+        $(".notifications").removeClass("active");
+        $(".popup").show();
+      });
+
+      $(".close").click(function() {
+        $(".popup").hide();
+      });
+    });
+  </script>
 
   <title>Admin - Create Post</title>
 </head>
@@ -45,7 +70,7 @@ adminOnly();
         <h2 style="text-align: center;">Create Post</h2>
         <?php include(ROOT_PATH . "/app/helpers/formErrors.php"); ?>
 
-        <form action="create.php" method="post" enctype="multipart/form-data" >
+        <form action="create.php" method="post" enctype="multipart/form-data">
 
           <div class="input-group">
             <label>Title</label>
@@ -78,23 +103,23 @@ adminOnly();
               <?php endforeach; ?>
             </select>
           </div>
-          
+
           <div>
-          <?php if (empty($published)) : ?>
-            <div class="input-group">
-              <label>
-                <input type="checkbox" name="published" /> Publish</label>
-            </div>
-          <?php else : ?>
-            <div class="input-group">
-              <label>
-                <input type="checkbox" name="published" checked /> Publish</label>
-            </div>
-          <?php endif; ?>
+            <?php if (empty($published)) : ?>
+              <div class="input-group">
+                <label>
+                  <input type="checkbox" name="published" /> Publish</label>
+              </div>
+            <?php else : ?>
+              <div class="input-group">
+                <label>
+                  <input type="checkbox" name="published" checked /> Publish</label>
+              </div>
+            <?php endif; ?>
           </div>
 
           <div class="input-group">
-            <button type="submit" name="add-post" class="btn">Save Post</button>
+            <button type="submit" name="add-post" class="btn1">Save Post</button>
           </div>
         </form>
 

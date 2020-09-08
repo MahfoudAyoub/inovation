@@ -1,4 +1,4 @@
-<?php 
+<?php
 include("../../path.php");
 include(ROOT_PATH . "/app/controllers/topics.php");
 adminOnly();
@@ -22,6 +22,31 @@ adminOnly();
 
   <!-- Admin Styling -->
   <link rel="stylesheet" href="../../assets/css/admin.css">
+  <link rel="stylesheet" href="../../assets/css/headerStyle.css">
+  <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $(".profile .icon_wrap").click(function() {
+        $(this).parent().toggleClass("active");
+        $(".notifications").removeClass("active");
+      });
+
+      $(".notifications .icon_wrap").click(function() {
+        $(this).parent().toggleClass("active");
+        $(".profile").removeClass("active");
+      });
+
+      $(".show_all .link").click(function() {
+        $(".notifications").removeClass("active");
+        $(".popup").show();
+      });
+
+      $(".close").click(function() {
+        $(".popup").hide();
+      });
+    });
+  </script>
 
   <title>Admin - Create Topic</title>
 </head>
@@ -47,7 +72,7 @@ adminOnly();
         <h2 style="text-align: center;">Update Topic</h2>
         <?php include(ROOT_PATH . "/app/helpers/formErrors.php"); ?>
         <form action="edit.php" method="post">
-        <input type="hidden" name="id" value="<?php echo $id; ?>" >
+          <input type="hidden" name="id" value="<?php echo $id; ?>">
 
           <div class="input-group">
             <label>Name</label>
@@ -58,7 +83,7 @@ adminOnly();
             <textarea class="text-input" name="description" id="body"><?php echo $description; ?></textarea>
           </div>
           <div class="input-group">
-            <button type="submit" name="update-topic" class="btn" >Update Topic</button>
+            <button type="submit" name="update-topic" class="btn">Update Topic</button>
           </div>
         </form>
 

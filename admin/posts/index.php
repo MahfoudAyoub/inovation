@@ -22,6 +22,31 @@ $posts = getPublishedPost();
 
   <!-- Admin Styling -->
   <link rel="stylesheet" href="../../assets/css/admin.css">
+  <link rel="stylesheet" href="../../assets/css/headerStyle.css">
+  <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $(".profile .icon_wrap").click(function() {
+        $(this).parent().toggleClass("active");
+        $(".notifications").removeClass("active");
+      });
+
+      $(".notifications .icon_wrap").click(function() {
+        $(this).parent().toggleClass("active");
+        $(".profile").removeClass("active");
+      });
+
+      $(".show_all .link").click(function() {
+        $(".notifications").removeClass("active");
+        $(".popup").show();
+      });
+
+      $(".close").click(function() {
+        $(".popup").hide();
+      });
+    });
+  </script>
 
   <title>Admin - Manage Posts</title>
 </head>
@@ -33,8 +58,8 @@ $posts = getPublishedPost();
   <!-- // header -->
 
   <div class="admin-wrapper clearfix">
-     <!-- Left Sidebar -->
-     <?php include(ROOT_PATH . "/app/includes/adminSidebar.php"); ?>
+    <!-- Left Sidebar -->
+    <?php include(ROOT_PATH . "/app/includes/adminSidebar.php"); ?>
     <!-- // Left Sidebar -->
 
 
@@ -55,25 +80,25 @@ $posts = getPublishedPost();
             <th colspan="3">Action</th>
           </thead>
           <tbody>
-            <?php foreach($posts as $key => $post): ?>
-            <tr class="rec">
-              <td><?php echo $key+1 ?></td>
-              <td><a href="#"><?php echo $post['title'] ?></a></td>
-              <td><?php echo $post['username']; ?></td>
+            <?php foreach ($posts as $key => $post) : ?>
+              <tr class="rec">
+                <td><?php echo $key + 1 ?></td>
+                <td><a href="#"><?php echo $post['title'] ?></a></td>
+                <td><?php echo $post['username']; ?></td>
 
-              <td><a href="edit.php?id=<?php echo $post['id']; ?>" class="edit">Edit</a></td>
-              <td><a href="edit.php?del_id=<?php echo $post['id']; ?>" class="delete">Delete</a></td>
+                <td><a href="edit.php?id=<?php echo $post['id']; ?>" class="edit">Edit</a></td>
+                <td><a href="edit.php?del_id=<?php echo $post['id']; ?>" class="delete">Delete</a></td>
 
-              <?php if($post['published']): ?> 
-                <td><a href="edit.php?published=0&p_id=<?php echo $post['id'] ?>" class="unpublish">unpublish</a></td>
-              <?php else: ?>
-                <td><a href="edit.php?published=1&p_id=<?php echo $post['id'] ?>" class="publish">publish</a></td>
-              <?php endif; ?>  
-               
-            </tr>
+                <?php if ($post['published']) : ?>
+                  <td><a href="edit.php?published=0&p_id=<?php echo $post['id'] ?>" class="unpublish">unpublish</a></td>
+                <?php else : ?>
+                  <td><a href="edit.php?published=1&p_id=<?php echo $post['id'] ?>" class="publish">publish</a></td>
+                <?php endif; ?>
+
+              </tr>
             <?php endforeach; ?>
-           
-           
+
+
           </tbody>
         </table>
 

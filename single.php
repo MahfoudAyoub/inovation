@@ -9,7 +9,6 @@ $posts = selectAll('posts', ['published' => 1]);
 $topics = selectAll('topics');
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,122 +16,150 @@ $topics = selectAll('topics');
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Blooger</title>
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="assets/css/all.css">
 
-  <!-- Custom Styles -->
-  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- --------- Owl-Carousel ------------------->
+  <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+
+  <!-- ------------ AOS Library ------------------------- -->
+  <link rel="stylesheet" href="assets/css/aos.css">
+
+  <!-- Custom Style   -->
+  <link rel="stylesheet" href="assets/css/Style1.css">
   <link rel="stylesheet" href="assets/css/headerStyle.css">
-    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $(".profile .icon_wrap").click(function() {
-                $(this).parent().toggleClass("active");
-                $(".notifications").removeClass("active");
-            });
+  <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $(".profile .icon_wrap").click(function() {
+        $(this).parent().toggleClass("active");
+        $(".notifications").removeClass("active");
+      });
 
-            $(".notifications .icon_wrap").click(function() {
-                $(this).parent().toggleClass("active");
-                $(".profile").removeClass("active");
-            });
+      $(".notifications .icon_wrap").click(function() {
+        $(this).parent().toggleClass("active");
+        $(".profile").removeClass("active");
+      });
 
-            $(".show_all .link").click(function() {
-                $(".notifications").removeClass("active");
-                $(".popup").show();
-            });
+      $(".show_all .link").click(function() {
+        $(".notifications").removeClass("active");
+        $(".popup").show();
+      });
 
-            $(".close").click(function() {
-                $(".popup").hide();
-            });
-        });
-    </script>
-  
+      $(".close").click(function() {
+        $(".popup").hide();
+      });
+    });
+  </script>
 
-  <title><?php echo $post['title']; ?> | ART-MODE</title>
 </head>
 
 <body>
 
-  <div id="fb-root"></div>
-  <script>
-    (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s);
-      js.id = id;
-      js.src =
-        'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2&appId=285071545181837&autoLogAppEvents=1';
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-  </script>
+  <!-- ----------------------------  Navigation ---------------------------------------------- -->
 
-  <!-- header -->
   <?php include(ROOT_PATH . "/app/includes/homeHeader.php"); ?>
-  <!-- // header -->
 
-  <!-- Page wrapper -->
-  <div class="page-wrapper">
+  <!-- ------------x---------------  Navigation --------------------------x------------------- -->
 
-    <!-- content -->
-    <div class="content clearfix">
-      <div class="page-content single">
-        <h2 style="text-align: center;"><?php echo $post['title']; ?></h2>
-        <br>
-        <?php echo html_entity_decode($post['body']) ?>
-      </div>
+  <!----------------------------- Main Site Section ------------------------------>
 
-      <div class="sidebar single">
-        <!-- fb page -->
-        <div class="fb-page" data-href="https://www.facebook.com/Piece-of-Advice-1055745464557488/" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
-          <blockquote cite="https://www.facebook.com/Piece-of-Advice-1055745464557488/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/Piece-of-Advice-1055745464557488/">Piece of Advice</a></blockquote>
-        </div>
-        <!-- // fb page -->
+  <main>
+    <!-- ---------------------- Site Content -------------------------->
+    <section class="container">
+      <div class="site-content">
 
-        <!-- Popular Posts -->
-        <div class="section popular">
-          <h2>Popular</h2>
-          <?php foreach ($posts as $key => $p) : ?>
-            <div class="post clearfix">
-              <img src="<?php echo BASE_URL . '/assets/images/' . $p['image']; ?>">
-              <a href=<?php echo BASE_URL . '/single.php?id=' . $p['id'] ?> class="title"><?php echo $p['title']; ?></a>
+        <div class="posts">
+          <div class="post-content" data-aos="zoom-in" data-aos-delay="200">
+            <div class="post-image">
+              <div>
+                <img src="<?php echo BASE_URL . '/assets/images/' . $post['image']; ?>" class="img" style="height: 400px; width: 100%; border-top-left-radius: 5px; border-top-right-radius: 5px;" alt="">
+              </div>
+              <div class="post-info flex-row">
+                <span><i class="fas fa-calendar-alt text-gray"></i><?php echo date('F j, Y', strtotime($post['created_at'])); ?></span>
+                <span>2 Commets</span>
+              </div>
             </div>
-          <?php endforeach; ?>
+            <div class="post-title">
+              <a href="single.php?id=<?php echo $post['id']; ?>"><?php echo $post['title']; ?></a>
+              <p><?php echo  html_entity_decode($post['body']); ?>
+              </p>
+            </div>
+          </div>
+          <hr>
+          <h3>comments</h3>
         </div>
-        <!-- // Popular Posts -->
 
-        <!-- topics -->
-        <div class="section topics">
-          <h2>Topics</h2>
-          <ul>
-            <?php foreach ($topics as $topic) : ?>
-              <li><a href="<?php echo BASE_URL . '/index.php?t_id=' . $topic['id'] . '&name=' . $topic['name'] ?>"><?php echo $topic['name']; ?></a></li>
+
+        <aside class="sidebar">
+          
+        
+          <div class="popular-post">
+            <h2>Popular Post</h2>
+
+            <?php foreach ($posts as $post) : ?>
+              <div class="post-content" data-aos="flip-up" data-aos-delay="200">
+                <div class="post-image">
+                  <div>
+                    <img src="<?php echo BASE_URL . '/assets/images/' . $post['image']; ?>" class="img" alt="blog1">
+                  </div>
+                  <div class="post-info flex-row">
+                    <span><i class="fas fa-calendar-alt text-gray"></i><?php echo date('F j, Y', strtotime($post['created_at'])); ?></span>
+                    <span>2 Commets</span>
+                  </div>
+                </div>
+                <div class="post-title">
+                  <a href="single.php?id=<?php echo $post['id']; ?>"><?php echo html_entity_decode(substr($post['title'], 0, 50) . '...'); ?></a>
+                </div>
+              </div>
             <?php endforeach; ?>
-          </ul>
-        </div>
-        <!-- // topics -->
 
+          </div>
+
+          <div class="popular-tags">
+            <h2>Popular Tags</h2>
+            <div class="tags flex-row">
+
+              <?php foreach ($topics as $key => $topic) : ?>
+                <span class="tag" data-aos="flip-up" data-aos-delay="100"><a href="<?php echo BASE_URL . '/index.php?t_id=' . $topic['id'] . '&name=' . $topic['name'] ?>"><?php echo $topic['name']; ?></a></span>
+              <?php endforeach; ?>
+
+            </div>
+          </div>
+        </aside>
       </div>
-    </div>
-    <!-- // content -->
+    </section>
 
-  </div>
-  <!-- // page wrapper -->
+    <!-- -----------x---------- Site Content -------------x------------>
 
-  <!-- FOOTER -->
+  </main>
+
+  <!---------------x------------- Main Site Section ---------------x-------------->
+
+
+  <!-- --------------------------- Footer ---------------------------------------- -->
+
   <?php include(ROOT_PATH . "/app/includes/footer.php"); ?>
-  <!-- // FOOTER -->
 
+  <!-- -------------x------------- Footer --------------------x------------------- -->
 
-  <!-- JQuery -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-  <!-- Slick JS -->
-  <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-
+  <!-- Jquery Library file -->
+  <script src="assets/js/Jquery3.4.1.min.js"></script>
   <script src="assets/js/scripts.js"></script>
 
+  <!-- --------- Owl-Carousel js ------------------->
+  <script src="assets/js/owl.carousel.min.js"></script>
+
+  <!-- ------------ AOS js Library  ------------------------- -->
+  <script src="assets/js/aos.js"></script>
+
+  <!-- Custom Javascript file -->
+  <script src="assets/js/main.js"></script>
 </body>
 
 </html>
