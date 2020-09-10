@@ -77,8 +77,9 @@ else {
 <body>
 
     <!-- ----------------------------  Navigation ---------------------------------------------- -->
-
-    <?php include(ROOT_PATH . "/app/includes/homeHeader.php"); ?>
+    <nav>
+        <?php include(ROOT_PATH . "/app/includes/homeHeader.php"); ?>
+    </nav>
 
     <!-- ------------x---------------  Navigation --------------------------x------------------- -->
 
@@ -99,7 +100,7 @@ else {
 
         <!-- --------------------- Blog Carousel ----------------- -->
 
-        <section >
+        <section>
 
             <div class="blog">
                 <div class="container">
@@ -130,10 +131,10 @@ else {
 
         <!-- ---------------------- Site Content -------------------------->
 
-        <section class="container" >
-            
+        <section class="container">
+
             <h2><?php echo $postTitle; ?></h2>
-            
+
             <div class="site-content">
                 <div class="posts">
                     <?php foreach ($posts as $post) : ?>
@@ -207,7 +208,7 @@ else {
                                     </div>
                                 </div>
                                 <div class="post-title">
-                                    <a href="single.php?id=<?php echo $post['id']; ?>"><?php echo html_entity_decode(substr($post['title'], 0, 50) . '...'); ?></a>
+                                    <a href="single.php?id=<?php echo $post['id']; ?>&username=<?php echo $post['username']; ?>"><?php echo html_entity_decode(substr($post['title'], 0, 50) . '...'); ?></a>
                                 </div>
                             </div>
                         <?php endforeach; ?>

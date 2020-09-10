@@ -6,6 +6,9 @@ include(ROOT_PATH . "/app/controllers/posts.php");
 if (isset($_GET['id'])) {
   $post = selectOne('posts', ['id' => $_GET['id']]);
   $username = $_GET['username'];
+  $postID = $_GET['id'];
+  $sqlNumComments = $conn->query("SELECT comments.id,postID, username, comment, DATE_FORMAT(comments.createdOn, '%Y-%m-%d') AS createdOn FROM comments INNER JOIN users ON comments.userID = users.id WHERE postID = $postID");
+  $numComments = $sqlNumComments->num_rows;
 }
 
 $posts = selectAll('posts', ['published' => 1]);
@@ -13,22 +16,22 @@ $topics = selectAll('topics');
 function createCommentRow($data)
 {
   global $conn;
-
+  //$postID = $_GET['id'];
   $response = '
           <div class="comment">
               <div class="user">' . $data['username'] . ' <span class="time">' . $data['createdOn'] . '</span></div>
               <div class="userComment">' . $data['comment'] . '</div>
-              <div class="reply"><a href="javascript:void(0)" data-commentID="' . $data['id'] . '" onclick="reply(this)">REPLY</a></div>
+              <div class="reply"><a href="javascript:void(0)" data-commentID="' . $data['id'] . '" onclick="reply(this)">Replay</a></div>
               <div class="replies">';
 
-  /*$sql = $conn->query("SELECT replies.id, username, comment, DATE_FORMAT(replies.createdOn, '%Y-%m-%d') AS createdOn FROM replies INNER JOIN users ON replies.userID = users.id WHERE replies.commentID = '" . $data['id'] . "' ORDER BY replies.id DESC LIMIT 1");
+  $sql = $conn->query("SELECT replies.id, username, comment, DATE_FORMAT(replies.createdOn, '%Y-%m-%d') AS createdOn FROM replies INNER JOIN users ON replies.userID = users.id WHERE replies.commentID = '" . $data['id'] . "' ORDER BY replies.id DESC LIMIT 1");
   while ($dataR = $sql->fetch_assoc())
     $response .= createCommentRow($dataR);
 
   $response .= '
                       </div>
           </div>
-      ';*/
+      ';
 
   return $response;
 }
@@ -38,7 +41,6 @@ if (isset($_POST['getAllComments'])) {
   $postID = $_POST['postID'];
   $response = "";
   $sql = $conn->query("SELECT comments.id,postID, username, comment, DATE_FORMAT(comments.createdOn, '%Y-%m-%d') AS createdOn FROM comments INNER JOIN users ON comments.userID = users.id WHERE postID = $postID   ORDER BY comments.id DESC LIMIT $start, 20");
-  
   while ($data = $sql->fetch_assoc())
     $response .= createCommentRow($data);
 
@@ -50,19 +52,24 @@ if (isset($_POST['addComment'])) {
   global $conn;
   unset($_POST['addComment']);
   $comment = $conn->real_escape_string($_POST['comment']);
+  $isReply = $conn->real_escape_string($_POST['isReply']);
+  $commentID = $conn->real_escape_string($_POST['commentID']);
   $_POST['userID'] = $_SESSION['id'];
   $postID = $_POST['postID'];
+
+  if ($isReply != 'false') {
+    $conn->query("INSERT INTO replies (comment, commentID, userID, postID, createdOn) VALUES ('$comment', '$commentID', '" . $_SESSION['id'] . "', $postID, NOW())");
+    $sql = $conn->query("SELECT replies.id,postID, username, comment, DATE_FORMAT(replies.createdOn, '%Y-%m-%d') AS createdOn FROM replies INNER JOIN users ON replies.userID = users.id WHERE postID = $postID ORDER BY replies.id DESC LIMIT 1");
+  } else {
+
+    $commenID = create('comments', $_POST);
+    $sql = $conn->query("SELECT comments.id,postID, username, comment, DATE_FORMAT(comments.createdOn, '%Y-%m-%d') AS createdOn FROM comments INNER JOIN users ON comments.userID = users.id WHERE postID = $postID  ORDER BY comments.id DESC LIMIT 1");
+  }
   //$_POST['postID'] = $postID;
-  $commenID = create('comments', $_POST);
-  $sql = $conn->query("SELECT comments.id,postID, username, comment, DATE_FORMAT(comments.createdOn, '%Y-%m-%d') AS createdOn FROM comments INNER JOIN users ON comments.userID = users.id WHERE postID = $postID  ORDER BY comments.id DESC LIMIT 1");
   $data = $sql->fetch_assoc();
-  $numComments = $sql->num_rows;
   exit(createCommentRow($data));
 }
 
-
-$sqlNumComments = $conn->query("SELECT id FROM comments  ");
-$numComments = $sqlNumComments->num_rows;
 ?>
 
 
@@ -155,9 +162,9 @@ $numComments = $sqlNumComments->num_rows;
           </div>
           <hr>
           <h2>comments</h2>
-          <div style="margin-top:50px;">
-            <?php include(ROOT_PATH . "/test.php"); ?>
-          </div>
+
+          <?php include(ROOT_PATH . "/comments.php"); ?>
+
         </div>
 
         <aside class="sidebar">
@@ -249,10 +256,16 @@ $numComments = $sqlNumComments->num_rows;
     var isReply = false,
       commentID = 0,
       max = <?php echo $numComments ?>;
+
     $(document).ready(function() {
-      $("#addComment").on('click', function() {
-        var comment = $("#mainComment").val();
+
+      $("#addComment, #addReply").on('click', function() {
+        var comment;
         var postID = '<?php echo $_GET['id']; ?>';
+        if (!isReply)
+          comment = $("#mainComment").val();
+        else
+          comment = $("#replyComment").val();
         //console.log(postID);
         if (comment.length > 5) {
           $.ajax({
@@ -262,19 +275,38 @@ $numComments = $sqlNumComments->num_rows;
             data: {
               addComment: 1,
               comment: comment,
+              isReply: isReply,
+              commentID: commentID,
               postID: postID
             },
             success: function(response) {
-              $(".userComments").prepend(response);
-              $("#mainComment").val("");
+              max++;
+              $("#numComments").text(max + " Comments");
+              if (!isReply) {
+                $(".userComments").prepend(response);
+                $("#mainComment").val("");
+              } else {
+                commentID = 0;
+                $("#replyComment").val("");
+                $(".replyRow").hide();
+                $('.replyRow').parent().next().append(response);
+              }
             }
           });
+
         } else
           alert('Please Check Your Inputs');
+
       });
       var postID = '<?php echo $_GET['id']; ?>';
       getAllComments(postID, 0, max);
     });
+
+    function reply(caller) {
+      commentID = $(caller).attr('data-commentID');
+      $(".replyRow").insertAfter($(caller));
+      $('.replyRow').show();
+    }
 
     function getAllComments(postID, start, max) {
       if (start > max) {
@@ -292,7 +324,7 @@ $numComments = $sqlNumComments->num_rows;
         },
         success: function(response) {
           $(".userComments").append(response);
-          getAllComments(postID ,(start + 20), max);
+          getAllComments(postID, (start + 20), max);
         }
       });
     }

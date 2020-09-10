@@ -130,7 +130,7 @@
                         <?php if ($_SESSION['admin']) : ?>
                             <li><a class="settings" href="<?php echo BASE_URL . '/admin/dashboard.php' ?>"><span class="picon"><i class="fas fa-cog"></i></span>Dashboard</a></li>
                         <?php endif; ?>
-                        <li class="profile_li"><a class="profile" href="#"><span class="picon"><i class="fas fa-user-alt"></i>
+                        <li class="profile_li"><a class="profile" href="<?php echo BASE_URL . '/about.php' ?>"><span class="picon"><i class="fas fa-user-alt"></i>
                                 </span>Profile</a>
                             <div class="btn">My Account</div>
                         </li>
