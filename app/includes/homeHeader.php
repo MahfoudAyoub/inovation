@@ -1,4 +1,5 @@
-<div class="navbar">
+
+<div class="navbar" id="navbar">
     <div class="navbar_left">
         <div class="logo">
             <a href="<?php echo BASE_URL . '/index.php' ?>">ART-MODE</a>
@@ -10,10 +11,10 @@
                 <a href="<?php echo BASE_URL . '/index.php' ?>">Home</a>
             </li>
             <li class="nav-link">
-                <a href="#">Category</a>
+                <a href="#home">Category</a>
             </li>
             <li class="nav-link">
-                <a href="#">Archive</a>
+                <a href="<?php echo BASE_URL . '/Posts.php' ?>">Posts</a>
             </li>
             <li class="nav-link">
                 <a href="<?php echo BASE_URL . '/about.php' ?>">About</a>

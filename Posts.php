@@ -86,57 +86,13 @@
     <!----------------------------- Main Site Section ------------------------------>
 
     <main>
-
-        <!------------------------ Site Title ---------------------->
-
-        <section id="home" class="site-title" style="background-image: url('assets/images/back2.jpg');">
-            <div class="site-background" data-aos="fade-up" data-aos-delay="100">
-                <h3>ART & DESIGN</h3>
-                <h1>Amazing Place on Degital Word</h1>
-            </div>
-        </section>
-
-        <!------------x----------- Site Title ----------x----------->
-
-        <!-- --------------------- Blog Carousel ----------------- -->
-
-        <section id="blogs">
-
-            <div class="blog">
-                <div class="container">
-
-                    <div class="owl-carousel owl-theme blog-post">
-                        <?php foreach ($posts as $post) : ?>
-                            <div class="blog-content" data-aos="fade-right" data-aos-delay="200">
-                                <img src="<?php echo BASE_URL . '/assets/images/' . $post['image']; ?>" alt="post-1">
-                                <div class="blog-title">
-                                    <h3><a href="single.php?id=<?php echo $post['id']; ?>"><?php echo html_entity_decode(substr($post['title'], 0, 30) . '...'); ?></a></h3>
-                                    <button class="btn btn-blog"><a href="single.php?id=<?php echo $post['id']; ?>&username=<?php echo $post['username']; ?>">More</a></button>
-                                    <span><?php echo date('F j, Y', strtotime($post['created_at'])); ?></span>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-
-                    <div class="owl-navigation">
-                        <span class="owl-nav-prev"><i class="fas fa-long-arrow-alt-left"></i></span>
-                        <span class="owl-nav-next"><i class="fas fa-long-arrow-alt-right"></i></span>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- ----------x---------- Blog Carousel --------x-------- -->
-
         <!-- ---------------------- Site Content -------------------------->
-
         <section id="posts" class="container">
             <div class="site-content">
                 <div class="posts">
-                <h2><?php echo $postTitle; ?></h2>
+                <h2 style="margin-top: 10px;"><?php echo $postTitle; ?></h2>
                     <?php foreach ($posts as $post) : ?>
-                        <div class="post-content" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="post-content" data-aos="zoom-in" data-aos-delay="200" style="margin-top: 10px">
                             <div class="post-image">
                                 <div>
                                     <img src="<?php echo BASE_URL . '/assets/images/' . $post['image']; ?>" class="img" style="height: 400px; width: 100%; border-top-left-radius: 5px; border-top-right-radius: 5px;" alt="">
@@ -151,20 +107,13 @@
                                 <a href="single.php?id=<?php echo $post['id']; ?>&username=<?php echo $post['username']; ?>"><?php echo $post['title']; ?></a>
                                 <p><?php echo  html_entity_decode(substr($post['body'], 0, 150) . '...'); ?>
                                 </p>
-                                <button  style="margin: 20px;" class="btn post-btn"><a href="single.php?id=<?php echo $post['id']; ?>&username=<?php echo $post['username']; ?>">Read More </a> <i class="fas fa-arrow-right"></i></button>
+                                <div>
+                                    <button  style="margin: 20px;" class="btn post-btn"><a href="single.php?id=<?php echo $post['id']; ?>&username=<?php echo $post['username']; ?>">Read More </a> <i class="fas fa-arrow-right"></i></button>
+                                </div>
                             </div>
                         </div>
                         <hr>
                     <?php endforeach; ?>
-
-
-                    <div class="pagination flex-row">
-                        <a href="#"><i class="fas fa-chevron-left"></i></a>
-                        <a href="#" class="pages">1</a>
-                        <a href="#" class="pages">2</a>
-                        <a href="#" class="pages">3</a>
-                        <a href="#"><i class="fas fa-chevron-right"></i></a>
-                    </div>
                 </div>
 
 
@@ -173,7 +122,7 @@
                     <div class="category">
                         <ul class="search-div">
                             <h2  style="margin-top: 10px;">Search</h2>
-                            <form  style="margin-top: 10px;" action="index.php" method="post">
+                            <form action="Posts.php" method="post"  style="margin-top: 10px;">
                                 <input type="text" name="search-term" class="fas fa-chevron-right" class="text-input" placeholder="Search...">
                             </form>
                         </ul>
@@ -181,11 +130,11 @@
                     <!-- // Search -->
 
                     <div class="category">
-                        <h2  style="margin-top: 20px;">Category</h2>
+                        <h2 style="margin-top: 20px;">Category</h2>
                         <ul class="category-list">
                             <?php foreach ($topics as $key => $topic) : ?>
                                 <li class="list-items" data-aos="fade-left" data-aos-delay="100">
-                                    <a href="<?php echo BASE_URL . '/index.php?t_id=' . $topic['id'] . '&name=' . $topic['name'] ?>"><?php echo $topic['name']; ?></a>
+                                    <a href="<?php echo BASE_URL . '/Posts.php?t_id=' . $topic['id'] . '&name=' . $topic['name'] ?>"><?php echo $topic['name']; ?></a>
                                 </li>
                             <?php endforeach; ?>
                         </ul>
