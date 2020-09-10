@@ -16,7 +16,7 @@
                 <a href="#">Archive</a>
             </li>
             <li class="nav-link">
-                <a href="#">Pages</a>
+                <a href="<?php echo BASE_URL . '/about.php' ?>">About</a>
             </li>
             <li class="nav-link">
                 <a href="#">Contact Us</a>

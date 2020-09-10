@@ -47,6 +47,8 @@ else {
     <link rel="stylesheet" href="assets/css/headerStyle.css">
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <script>
         $(document).ready(function() {
             $(".profile .icon_wrap").click(function() {
@@ -100,7 +102,6 @@ else {
         <section >
 
             <div class="blog">
-
                 <div class="container">
 
                     <div class="owl-carousel owl-theme blog-post">
@@ -109,7 +110,7 @@ else {
                                 <img src="<?php echo BASE_URL . '/assets/images/' . $post['image']; ?>" alt="post-1">
                                 <div class="blog-title">
                                     <h3><a href="single.php?id=<?php echo $post['id']; ?>"><?php echo html_entity_decode(substr($post['title'], 0, 30) . '...'); ?></a></h3>
-                                    <button class="btn btn-blog"><a href="single.php?id=<?php echo $post['id']; ?>">More</a></button>
+                                    <button class="btn btn-blog"><a href="single.php?id=<?php echo $post['id']; ?>&username=<?php echo $post['username']; ?>">More</a></button>
                                     <span><?php echo date('F j, Y', strtotime($post['created_at'])); ?></span>
                                 </div>
                             </div>
@@ -130,7 +131,9 @@ else {
         <!-- ---------------------- Site Content -------------------------->
 
         <section class="container" >
+            
             <h2><?php echo $postTitle; ?></h2>
+            
             <div class="site-content">
                 <div class="posts">
                     <?php foreach ($posts as $post) : ?>
@@ -146,10 +149,10 @@ else {
                                 </div>
                             </div>
                             <div class="post-title">
-                                <a href="single.php?id=<?php echo $post['id']; ?>"><?php echo $post['title']; ?></a>
+                                <a href="single.php?id=<?php echo $post['id']; ?>&username=<?php echo $post['username']; ?>"><?php echo $post['title']; ?></a>
                                 <p><?php echo  html_entity_decode(substr($post['body'], 0, 150) . '...'); ?>
                                 </p>
-                                <button class="btn post-btn"><a href="single.php?id=<?php echo $post['id']; ?>">Read More </a> <i class="fas fa-arrow-right"></i></button>
+                                <button class="btn post-btn"><a href="single.php?id=<?php echo $post['id']; ?>&username=<?php echo $post['username']; ?>">Read More </a> <i class="fas fa-arrow-right"></i></button>
                             </div>
                         </div>
                         <hr>
