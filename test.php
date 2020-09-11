@@ -62,7 +62,7 @@ if (isset($_POST['addComment'])) {
     $sql = $conn->query("SELECT replies.id,postID, username, comment, DATE_FORMAT(replies.createdOn, '%Y-%m-%d') AS createdOn FROM replies INNER JOIN users ON replies.userID = users.id WHERE postID = $postID ORDER BY replies.id DESC LIMIT 1");
   } else {
 
-    $conn->query("INSERT INTO comments (userID,postID, comment, createdOn) VALUES ('" . $_SESSION['id'] . "', '$postID','$comment',NOW())");
+    $conn->query("INSERT INTO comments (userID,postID, comment, createdOn) VALUES ('".$_SESSION['id']."', '$postID','$comment',NOW())");
     $sql = $conn->query("SELECT comments.id,postID, username, comment, DATE_FORMAT(comments.createdOn, '%Y-%m-%d') AS createdOn FROM comments INNER JOIN users ON comments.userID = users.id WHERE postID = $postID  ORDER BY comments.id DESC LIMIT 1");
   }
   //$_POST['postID'] = $postID;
@@ -151,7 +151,7 @@ if (isset($_POST['addComment'])) {
               <div class="post-info flex-row">
                 <span><i class="fas fa-user text-gray"></i><?php echo $username; ?></span>
                 <span><i class="fas fa-calendar-alt text-gray"></i><?php echo date('F j, Y', strtotime($post['created_at'])); ?></span>
-                <span><?php echo $numComments ?> Commets</span>
+                <span><?php echo $numComments ?>  Commets</span>
               </div>
             </div>
             <div class="post-title">
@@ -240,40 +240,40 @@ if (isset($_POST['addComment'])) {
       $("#addComment, #addReply").on('click', function() {
         var comment;
         var postID = '<?php echo $_GET['id']; ?>';
-       
-          if (!isReply)
-            comment = $("#mainComment").val();
-          else
-            comment = $("#replyComment").val();
-          if (comment.length > 0 ) {
-            $.ajax({
-              url: 'single.php',
-              method: 'POST',
-              dataType: 'html',
-              data: {
-                addComment: 1,
-                comment: comment,
-                isReply: isReply,
-                commentID: commentID,
-                postID: postID
-              },
-              success: function(response) {
-                max++;
-                $("#numComments").text(max + " Comments");
-                if (!isReply) {
-                  $(".userComments").prepend(response);
-                  $("#mainComment").val("");
-                } else {
-                  commentID = 0;
-                  $("#replyComment").val("");
-                  $(".replyRow").hide();
-                  $('.replyRow').parent().next().append(response);
-                }
+        if (!isReply)
+          comment = $("#mainComment").val();
+        else
+          comment = $("#replyComment").val();
+        //console.log(postID);
+        if (comment.length > 0) {
+          $.ajax({
+            url: 'single.php',
+            method: 'POST',
+            dataType: 'html',
+            data: {
+              addComment: 1,
+              comment: comment,
+              isReply: isReply,
+              commentID: commentID,
+              postID: postID
+            },
+            success: function(response) {
+              max++;
+              $("#numComments").text(max + " Comments");
+              if (!isReply) {
+                $(".userComments").prepend(response);
+                $("#mainComment").val("");
+              } else {
+                commentID = 0;
+                $("#replyComment").val("");
+                $(".replyRow").hide();
+                $('.replyRow').parent().next().append(response);
               }
-            });
+            }
+          });
 
-          } else
-            alert('Please Check Your Inputs');
+        } else
+          alert('Please Check Your Inputs');
 
       });
       var postID = '<?php echo $_GET['id']; ?>';
