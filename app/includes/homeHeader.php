@@ -135,6 +135,12 @@
                                 </span>Profile</a>
                 
                         </li>
+
+                        <li class="profile_li"><a class="profile" href="<?php echo BASE_URL . '/chatRoom/user/index.php' ?>"><span class="picon"><i class="fas fa-user-alt"></i>
+                                </span>Join Rooms</a>
+                
+                        </li>
+
                         <li><a class="logout" href="<?php echo BASE_URL . '/logout.php' ?>"><span class="picon"><i class="fas fa-sign-out-alt"></i></span>Logout</a></li>
                     </ul>
                 </div>
