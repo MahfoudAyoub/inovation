@@ -1,26 +1,36 @@
 <?php
 include("path.php");
-include(ROOT_PATH . "/app/controllers/topics.php");
+include(ROOT_PATH . "/app/controllers/users.php");
+
+$id = "";
+$username = "";
+$email    = "";
+$address    = "please add your address";
+$phone    = "please add your address";
+$admin    = "";
+$password = "";
+$passwordConf = "";
+$table = 'users';
+$errors = array();
+
+$user = selectOne($table, ['id' => $_SESSION['id']]);
+if (!empty($user)) {
+  $id = $user['id'];
+  $username = $user['username'];
+  $admin = $user['admin'];
+  $email = $user['email'];
+  $address = $user['address'];
+  $phone = $user['phone'];
+}
 
 
-$posts = array();
-$postTitle = 'Recent Posts';
+//$sqlNumComments = $conn->query("SELECT id , username, email, address, phone FROM users WHERE id = " . $_SESSION['userID'] . "");
 
-//fetching posts by topic
-if (isset($_GET['t_id'])) {
-  $posts = getPostByTopicId($_GET['t_id']);
-  $postTitle = "You Searched For Posts under '" . $_GET['name'] . "' :";
-}
-//searching
-else if (isset($_POST['search-term'])) {
-  $postTitle = "You Searched For '" . $_POST['search-term'] . "' :";
-  $posts = searchPosts($_POST['search-term']);
-}
-//get all published posts from database 
-else {
-  $posts = getPublishedPost();
-}
+
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -45,6 +55,7 @@ else {
   <!-- Custom Style   -->
   <link rel="stylesheet" href="assets/css/Style1.scss">
   <link rel="stylesheet" href="assets/css/headerStyle.css">
+  <link rel="stylesheet" href="assets/css/profileStyle.scss">
   <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -84,27 +95,22 @@ else {
   <!-- ------------x---------------  Navigation --------------------------x------------------- -->
 
   <!----------------------------- Main Site Section ------------------------------>
-
-  <main>
-
-    <!-- --------------------- about content ----------------- -->
-
-    <section>
-      <div class="blog">
-        
+  <div class="profile-card">
+    <div class="image-container">
+      <img src="<?php echo BASE_URL . '/assets/images/profile_pic.png' ?>" style="width : 100%">
+      <div style="margin: 10px;" class="title">
+        <h2> <?php echo $username; ?> <a style="margin-left:5px;" href="#" class="button">Edit profile</a></h2>
       </div>
-    </section>
+    </div>
+    <div class="main-container">
+      <p><i class="fa fa-envelope info"></i> <?php echo $email; ?></p>
+      <p style="margin-top: 10px;"><i class="fa fa-phone info"></i> <?php echo $phone; ?></p>
+      <p style="margin-top: 10px;"><i class="fa fa-home info"></i> <?php echo $address; ?></p>
+      <hr style="margin-top: 10px;">
+    </div>
+  </div>
 
-  </main>
 
-  <!---------------x------------- Main Site Section ---------------x-------------->
-
-
-  <!-- --------------------------- Footer ---------------------------------------- -->
-
-  <?php include(ROOT_PATH . "/app/includes/footer.php"); ?>
-
-  <!-- -------------x------------- Footer --------------------x------------------- -->
 
   <!-- Jquery Library file -->
   <script src="assets/js/Jquery3.4.1.min.js"></script>

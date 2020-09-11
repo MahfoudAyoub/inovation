@@ -108,7 +108,7 @@
                     <div class="owl-carousel owl-theme blog-post">
                         <?php foreach ($posts as $post) : ?>
                             <div class="blog-content" data-aos="fade-right" data-aos-delay="200">
-                                <img src="<?php echo BASE_URL . '/assets/images/' . $post['image']; ?>" alt="post-1">
+                                <img style="height: 200px;" src="<?php echo BASE_URL . '/assets/images/' . $post['image']; ?>" alt="post-1">
                                 <div class="blog-title">
                                     <h3><a href="single.php?id=<?php echo $post['id']; ?>"><?php echo html_entity_decode(substr($post['title'], 0, 30) . '...'); ?></a></h3>
                                     <button class="btn btn-blog"><a href="single.php?id=<?php echo $post['id']; ?>&username=<?php echo $post['username']; ?>">More</a></button>
@@ -139,7 +139,7 @@
                         <div class="post-content" data-aos="zoom-in" data-aos-delay="200">
                             <div class="post-image">
                                 <div>
-                                    <img src="<?php echo BASE_URL . '/assets/images/' . $post['image']; ?>" class="img" style="height: 400px; width: 100%; border-top-left-radius: 5px; border-top-right-radius: 5px;" alt="">
+                                    <img src="<?php echo BASE_URL . '/assets/images/' . $post['image']; ?>" class="img" style="height: 400px; width: 800px; border-top-left-radius: 5px; border-top-right-radius: 5px;" alt="">
                                 </div>
                                 <div class="post-info flex-row">
                                     <span><i class="fas fa-user text-gray"></i><?php echo $post['username']; ?></span>
@@ -198,7 +198,7 @@
                             <div class="post-content" data-aos="flip-up" data-aos-delay="200">
                                 <div class="post-image">
                                     <div>
-                                        <img src="<?php echo BASE_URL . '/assets/images/' . $post['image']; ?>" class="img" alt="blog1">
+                                        <img style="height: 150px;" src="<?php echo BASE_URL . '/assets/images/' . $post['image']; ?>" class="img" alt="blog1">
                                     </div>
                                     <div class="post-info flex-row">
                                         <span><i class="fas fa-calendar-alt text-gray"></i><?php echo date('F j, Y', strtotime($post['created_at'])); ?></span>

@@ -62,7 +62,7 @@ if (isset($_POST['addComment'])) {
     $sql = $conn->query("SELECT replies.id,postID, username, comment, DATE_FORMAT(replies.createdOn, '%Y-%m-%d') AS createdOn FROM replies INNER JOIN users ON replies.userID = users.id WHERE postID = $postID ORDER BY replies.id DESC LIMIT 1");
   } else {
 
-    $commenID = create('comments', $_POST);
+    $conn->query("INSERT INTO comments (userID,postID, comment, createdOn) VALUES ('".$_SESSION['id']."', '$postID','$comment',NOW())");
     $sql = $conn->query("SELECT comments.id,postID, username, comment, DATE_FORMAT(comments.createdOn, '%Y-%m-%d') AS createdOn FROM comments INNER JOIN users ON comments.userID = users.id WHERE postID = $postID  ORDER BY comments.id DESC LIMIT 1");
   }
   //$_POST['postID'] = $postID;
@@ -146,12 +146,12 @@ if (isset($_POST['addComment'])) {
           <div class="post-content" data-aos="zoom-in" data-aos-delay="200">
             <div class="post-image">
               <div>
-                <img src="<?php echo BASE_URL . '/assets/images/' . $post['image']; ?>" class="img" style="height: 400px; width: 100%; border-top-left-radius: 5px; border-top-right-radius: 5px;" alt="">
+                <img src="<?php echo BASE_URL . '/assets/images/' . $post['image']; ?>" class="img" style="height: 400px; width: 800px; border-top-left-radius: 5px; border-top-right-radius: 5px;" alt="">
               </div>
               <div class="post-info flex-row">
                 <span><i class="fas fa-user text-gray"></i><?php echo $username; ?></span>
                 <span><i class="fas fa-calendar-alt text-gray"></i><?php echo date('F j, Y', strtotime($post['created_at'])); ?></span>
-                <span>2 Commets</span>
+                <span><?php echo $numComments ?>  Commets</span>
               </div>
             </div>
             <div class="post-title">
@@ -168,28 +168,6 @@ if (isset($_POST['addComment'])) {
         </div>
 
         <aside class="sidebar">
-          <!-- Search -->
-          <div class="category">
-            <ul class="search-div">
-              <h2>Search</h2>
-              <form action="index.php" method="post">
-                <input type="text" name="search-term" class="text-input" placeholder="Search...">
-              </form>
-            </ul>
-          </div>
-          <!-- // Search -->
-
-          <div class="category">
-            <h2>Category</h2>
-            <ul class="category-list">
-              <?php foreach ($topics as $key => $topic) : ?>
-                <li class="list-items" data-aos="fade-left" data-aos-delay="100">
-                  <a href="<?php echo BASE_URL . '/index.php?t_id=' . $topic['id'] . '&name=' . $topic['name'] ?>"><?php echo $topic['name']; ?></a>
-                </li>
-              <?php endforeach; ?>
-            </ul>
-          </div>
-
           <div class="popular-post">
             <h2>Popular Post</h2>
 

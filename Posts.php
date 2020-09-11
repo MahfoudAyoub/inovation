@@ -1,25 +1,25 @@
 <?php
-    include("path.php");
-    include(ROOT_PATH . "/app/controllers/topics.php");
+include("path.php");
+include(ROOT_PATH . "/app/controllers/topics.php");
 
 
-    $posts = array();
-    $postTitle = 'Recent Posts';
+$posts = array();
+$postTitle = 'Recent Posts';
 
-    //fetching posts by topic
-    if (isset($_GET['t_id'])) {
-        $posts = getPostByTopicId($_GET['t_id']);
-        $postTitle = "You Searched For Posts under '" . $_GET['name'] . "' :";
-    }
-    //searching
-    else if (isset($_POST['search-term'])) {
-        $postTitle = "You Searched For '" . $_POST['search-term'] . "' :";
-        $posts = searchPosts($_POST['search-term']);
-    }
-    //get all published posts from database 
-    else {
-        $posts = getPublishedPost();
-    }
+//fetching posts by topic
+if (isset($_GET['t_id'])) {
+    $posts = getPostByTopicId($_GET['t_id']);
+    $postTitle = "You Searched For Posts under '" . $_GET['name'] . "' :";
+}
+//searching
+else if (isset($_POST['search-term'])) {
+    $postTitle = "You Searched For '" . $_POST['search-term'] . "' :";
+    $posts = searchPosts($_POST['search-term']);
+}
+//get all published posts from database 
+else {
+    $posts = getPublishedPost();
+}
 ?>
 
 <!DOCTYPE html>
@@ -90,7 +90,7 @@
         <section id="posts" class="container">
             <div class="site-content">
                 <div class="posts">
-                <h2 style="margin-top: 10px;"><?php echo $postTitle; ?></h2>
+                    <h2 style="margin-top: 10px;"><?php echo $postTitle; ?></h2>
                     <?php foreach ($posts as $post) : ?>
                         <div class="post-content" data-aos="zoom-in" data-aos-delay="200" style="margin-top: 10px">
                             <div class="post-image">
@@ -108,7 +108,7 @@
                                 <p><?php echo  html_entity_decode(substr($post['body'], 0, 150) . '...'); ?>
                                 </p>
                                 <div>
-                                    <button  style="margin: 20px;" class="btn post-btn"><a href="single.php?id=<?php echo $post['id']; ?>&username=<?php echo $post['username']; ?>">Read More </a> <i class="fas fa-arrow-right"></i></button>
+                                    <button style="margin: 20px;" class="btn post-btn"><a href="single.php?id=<?php echo $post['id']; ?>&username=<?php echo $post['username']; ?>">Read More </a> <i class="fas fa-arrow-right"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -121,8 +121,8 @@
                     <!-- Search -->
                     <div class="category">
                         <ul class="search-div">
-                            <h2  style="margin-top: 10px;">Search</h2>
-                            <form action="Posts.php" method="post"  style="margin-top: 10px;">
+                            <h2 style="margin-top: 10px;">Search</h2>
+                            <form action="Posts.php" method="post" style="margin-top: 10px;">
                                 <input type="text" name="search-term" class="fas fa-chevron-right" class="text-input" placeholder="Search...">
                             </form>
                         </ul>
@@ -147,7 +147,7 @@
                             <div class="post-content" data-aos="flip-up" data-aos-delay="200">
                                 <div class="post-image">
                                     <div>
-                                        <img src="<?php echo BASE_URL . '/assets/images/' . $post['image']; ?>" class="img" alt="blog1">
+                                        <img style="height: 150px;" src="<?php echo BASE_URL . '/assets/images/' . $post['image']; ?>" class="img" alt="blog1">
                                     </div>
                                     <div class="post-info flex-row">
                                         <span><i class="fas fa-calendar-alt text-gray"></i><?php echo date('F j, Y', strtotime($post['created_at'])); ?></span>

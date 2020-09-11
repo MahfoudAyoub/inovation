@@ -21,7 +21,7 @@
             <div class="profile_dd">
                 <ul class="profile_ul">
                     <li><a class="settings" href="<?php echo BASE_URL . '/admin/dashboard.php' ?>"><span class="picon"><i class="fas fa-cog"></i></span>Setting</a></li>
-                    <li class="profile_li"><a class="profile" href="#"><span class="picon"><i class="fas fa-user-alt"></i>
+                    <li class="profile_li"><a class="profile" href="<?php echo BASE_URL . '/profile.php' ?>"><span class="picon"><i class="fas fa-user-alt"></i>
                             </span>Profile</a>
                     </li>
                     <li><a class="logout" href="<?php echo BASE_URL . '/logout.php' ?>"><span class="picon"><i class="fas fa-sign-out-alt"></i></span>Logout</a></li>

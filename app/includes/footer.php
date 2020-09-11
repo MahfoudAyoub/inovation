@@ -2,8 +2,7 @@
         <div class="container">
             <div class="about-us" data-aos="fade-right" data-aos-delay="200">
                 <h2>About us</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium quia atque nemo ad modi officiis
-                    iure, autem nulla tenetur repellendus.</p>
+                <p> plateforme d’innovation technologique dédiée à l’art-mode avec des conseils, l’accompagnement dans l’innovation, le design, le process, etc. notamment par le digital.</p>
             </div>
             <div class="newsletter" data-aos="fade-right" data-aos-delay="200">
                 <h2>Newsletter</h2>
@@ -38,9 +37,9 @@
         </div>
         <div class="rights flex-row">
             <h4 class="text-gray">
-                Copyright ©2019 All rights reserved | made by
-                <a href="www.youtube.com/c/dailytuition" target="_black">Daily Tuition <i class="fab fa-youtube"></i>
-                    Channel</a>
+                Copyright ©2020 All rights reserved | made by
+                <a href="https://github.com/MahfoudAyoub/inovation" target="_black">MAHFOUD Ayoub <i class="fab fa-github"></i></i>
+                    Lien</a>
             </h4>
         </div>
         <div class="move-up">

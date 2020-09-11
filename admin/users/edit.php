@@ -85,6 +85,16 @@ adminOnly();
           </div>
 
           <div class="input-group">
+            <label>Address</label>
+            <input type="address" name="address" value="<?php echo $address; ?>" class="text-input">
+          </div>
+
+          <div class="input-group">
+            <label>Phone</label>
+            <input type="phone" name="phone" value="<?php echo $phone; ?>" class="text-input">
+          </div>
+
+          <div class="input-group">
             <label>Password</label>
             <input type="password" name="password" value="<?php echo $password ?>" ; class="text-input">
           </div>

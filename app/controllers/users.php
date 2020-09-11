@@ -8,6 +8,8 @@ include(ROOT_PATH . "/app/helpers/midleware.php");
 $id = "";
 $username = "";
 $email    = "";
+$address    = "";
+$phone    = "";
 $admin    = "";
 $password = "";
 $passwordConf = "";
@@ -84,6 +86,8 @@ if (isset($_POST['update-user'])) {
         $username = $_POST['username'];
         $admin = isset($_POST['admin']) ? 1 : 0;
         $email    = $_POST['email'];
+        $address    = $_POST['address'];
+        $phone    = $_POST['phone'];
         $password = $_POST['password'];
         $passwordConf = $_POST['passwordConf'];
     }
@@ -96,6 +100,8 @@ if (isset($_GET['id'])) {
     $username = $user['username'];
     $admin = $user['admin'];
     $email    = $user['email'];
+    $address    = $user['address'];
+    $phone    = $user['phone'];
 }
 
 
