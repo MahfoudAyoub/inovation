@@ -24,7 +24,7 @@ function createCommentRow($data)
               <div class="reply"><a href="javascript:void(0)" data-commentID="' . $data['id'] . '" onclick="reply(this)">Replay</a></div>
               <div class="replies">';
 
-  $sql = $conn->query("SELECT replies.id, username, comment, DATE_FORMAT(replies.createdOn, '%Y-%m-%d') AS createdOn FROM replies INNER JOIN users ON replies.userID = users.id WHERE replies.commentID = '" . $data['id'] . "' ORDER BY replies.id DESC LIMIT 1");
+  $sql = $conn->query("SELECT replies.id, username, comment, DATE_FORMAT(replies.createdOn, '%Y-%m-%d') AS createdOn FROM replies INNER JOIN users ON replies.userID = users.id WHERE replies.commentID = '" . $data['id'] . "' ORDER BY replies.id DESC");
   while ($dataR = $sql->fetch_assoc())
     $response .= createCommentRow($dataR);
 
