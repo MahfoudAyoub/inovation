@@ -16,6 +16,10 @@
 					<div class="form-group input-group">
 						<span class="input-group-addon" style="width:150px;">Username:</span>
 						<input type="text" style="width:350px;" class="form-control" id="uusername" required>
+                    </div>
+                    <div class="form-group input-group">
+						<span class="input-group-addon" style="width:150px;">Email:</span>
+						<input type="email" style="width:350px;" class="form-control" id="uemail" required>
 					</div>
 					<div class="form-group input-group">
 						<span class="input-group-addon" style="width:150px;">Password:</span>
@@ -83,6 +87,10 @@
 					<div class="form-group input-group">
 						<span class="input-group-addon" style="width:150px;">Username:</span>
 						<input type="text" style="width:350px;" class="form-control" id="user_user">
+                    </div>
+                    <div class="form-group input-group">
+						<span class="input-group-addon" style="width:150px;">Email:</span>
+						<input type="email" style="width:350px;" class="form-control" id="user_email">
 					</div>
 					<div class="form-group input-group">
 						<span class="input-group-addon" style="width:150px;">Password:</span>

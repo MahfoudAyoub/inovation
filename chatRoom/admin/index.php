@@ -1,5 +1,7 @@
 <?php include('session.php'); ?>
-<?php include('header.php'); ?>
+<?php include('header.php');
+include("../../path.php"); ?>
+
 <body>
 <?php include('navbar.php'); ?>
 <div class="container">

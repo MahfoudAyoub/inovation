@@ -1,5 +1,6 @@
 <?php
+include "../../path.php";
 	session_start();
 	session_destroy();
-	header('location:../');
+	header('location: ' . BASE_URL . '/index.php');
 ?>

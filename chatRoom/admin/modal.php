@@ -70,6 +70,10 @@
 					<div class="form-group input-group">
 						<span class="input-group-addon" style="width:150px;">Username:</span>
 						<input type="text" style="width:350px;" class="form-control" name="musername" value="<?php echo $srow['username']; ?>">
+                    </div>
+                    <div class="form-group input-group">
+						<span class="input-group-addon" style="width:150px;">Email:</span>
+						<input type="email" style="width:350px;" class="form-control" name="memail" value="<?php echo $srow['email']; ?>">
 					</div>
 					<div class="form-group input-group">
 						<span class="input-group-addon" style="width:150px;">Password:</span>

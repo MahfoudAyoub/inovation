@@ -22,7 +22,7 @@
 		$password = check_input($_POST["password"]);
 		$fpassword=md5($password);
 		
-		$query=mysqli_query($conn,"select * from `user` where username='$fusername' and password='$fpassword'");
+		$query=mysqli_query($conn,"select * from `users` where username='$fusername' and password='$fpassword'");
 		
 		if(mysqli_num_rows($query)==0){
 			$_SESSION['msg'] = "Login Failed, Invalid Input!";
@@ -32,7 +32,7 @@
 			
 			$row=mysqli_fetch_array($query);
 			if ($row['access']==1){
-				$_SESSION['id']=$row['userid'];
+				$_SESSION['id']=$row['id'];
 				?>
 				<script>
 					window.alert('Login Success, Welcome Admin!');
@@ -41,11 +41,11 @@
 				<?php
 			}
 			else{
-				$_SESSION['id']=$row['userid'];
+				$_SESSION['id']=$row['id'];
 				?>
 				<script>
 					window.alert('Login Success, Welcome User!');
-					window.location.href='user/';
+					window.location.href='user/index.php';
 				</script>
 				<?php
 			}

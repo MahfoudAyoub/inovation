@@ -7,7 +7,7 @@
 	$mpassword=$_POST['mpassword'];
 	$musername=$_POST['musername'];
 	
-	$myq=mysqli_query($conn,"select * from `user` where userid='".$_SESSION['id']."'");
+	$myq=mysqli_query($conn,"select * from `users` where id='".$_SESSION['id']."'");
 	$myqrow=mysqli_fetch_array($myq);
 	
 	if ($cpassword!=$apassword){
@@ -36,7 +36,7 @@
 			$newpassword=md5($mpassword);
 		}
 		
-		mysqli_query($conn,"update `user` set username='$musername', password='$newpassword', uname='$mname' where userid='".$_SESSION['id']."'");
+		mysqli_query($conn,"update `users` set username='$musername', password='$newpassword', uname='$mname' where id='".$_SESSION['id']."'");
 		?>
 		<script>
 			window.alert('Changes Saved!');

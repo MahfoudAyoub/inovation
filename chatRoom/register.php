@@ -23,7 +23,7 @@
 		$fpassword=md5($password);
 		$fname = check_input($_POST["name"]);
 		
-		mysqli_query($conn,"insert into `user` (uname, username, password, access) values ('$fname', '$fusername', '$fpassword', '2')");
+		mysqli_query($conn,"insert into `users` (uname, username, password, access) values ('$fname', '$fusername', '$fpassword', '2')");
 		
 		$_SESSION['msg'] = "Sign up successful. You may login now!"; 
 		header('location: index.php');

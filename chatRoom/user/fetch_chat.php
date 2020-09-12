@@ -3,7 +3,7 @@
 	if(isset($_POST['fetch'])){
 		$id = $_POST['id'];
 		
-		$query=mysqli_query($conn,"select * from `chat` left join `user` on user.userid=chat.userid where chatroomid='$id' order by chat_date asc") or die(mysqli_error());
+		$query=mysqli_query($conn,"select * from `chat` left join `users` on users.id=chat.userid where chatroomid='$id' order by chat_date asc") or die(mysqli_error());
 		while($row=mysqli_fetch_array($query)){
 		?>	
 		<div>

@@ -6,7 +6,7 @@
 						<strong>Room Member/s:</strong>
 						<div style="height: 10px;"></div>
 					<?php
-						$rm=mysqli_query($conn,"select * from chat_member left join `user` on user.userid=chat_member.userid where chatroomid='$id'");
+						$rm=mysqli_query($conn,"select * from chat_member left join `users` on user.id=chat_member.userid where chatroomid='$id'");
 						while($rmrow=mysqli_fetch_array($rm)){
 							?>
 							<span>

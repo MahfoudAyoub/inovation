@@ -1,5 +1,6 @@
 <?php include('session.php'); ?>
-<?php include('header.php'); ?>
+<?php include('header.php'); 
+include("../../path.php");?>
 <body>
 <?php include('navbar.php'); ?>
 <div class="container">
@@ -30,6 +31,7 @@ $(document).ready(function(){
 	$(document).on('click', '#adduser', function(){
 		name=$('#uname').val();
 		username=$('#uusername').val();
+		email=$('#uemail').val();
 		password=$('#upassword').val();
 		access=$('#uaccess').val();
 			$.ajax({
@@ -38,6 +40,7 @@ $(document).ready(function(){
 				data:{
 					name: name,
 					username: username,
+					email: email,
 					password: password,
 					access: access,
 					adduser: 1,
@@ -77,10 +80,12 @@ $(document).ready(function(){
 		var rid=$(this).val();
 		var name=$('#ename'+rid).val();
 		var username=$('#eusername'+rid).val();
+		var email=$('#eemail'+rid).val();
 		var password=$('#epassword'+rid).val();
 		$('#edit_user').modal('show');
 		$('.modal-body #user_name').val(name);
 		$('.modal-body #user_user').val(username);
+		$('.modal-body #user_email').val(email);
 		$('.modal-body #user_pass').val(password);
 		$('.modal-footer #confirm_update').val(rid);
 	});
@@ -89,6 +94,7 @@ $(document).ready(function(){
 		var nrid=$(this).val();
 		var nname=$('#user_name').val();
 		var nuser=$('#user_user').val();
+		var nemail=$('#user_email').val();
 		var npass=$('#user_pass').val();
 		$('#edit_user').modal('hide');
 		$('body').removeClass('modal-open');
@@ -100,6 +106,7 @@ $(document).ready(function(){
 					id: nrid,
 					name: nname,
 					username: nuser,
+					email: nemail,
 					password: npass,
 					edit: 1,
 				},

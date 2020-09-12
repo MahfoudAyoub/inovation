@@ -2,7 +2,7 @@
     <div class="container-fluid">
 		
 		<ul class="nav navbar-nav">
-			<li><a href="index.php"><span class="glyphicon glyphicon-home"></span> Lobby</a></li>
+			<li><a href="../../index.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
 		</ul>
 		
 		<ul class="nav navbar-nav navbar-right">

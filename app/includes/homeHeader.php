@@ -1,4 +1,3 @@
-
 <div class="navbar" id="navbar">
     <div class="navbar_left">
         <div class="logo">
@@ -133,14 +132,19 @@
                         <?php endif; ?>
                         <li class="profile_li"><a class="profile" href="<?php echo BASE_URL . '/profile.php' ?>"><span class="picon"><i class="fas fa-user-alt"></i>
                                 </span>Profile</a>
-                
-                        </li>
 
-                        <li class="profile_li"><a class="profile" href="<?php echo BASE_URL . '/chatRoom/user/index.php' ?>"><span class="picon"><i class="fas fa-user-alt"></i>
-                                </span>Join Rooms</a>
-                
                         </li>
+                        <?php if ($_SESSION['admin']) : ?>
+                            <li class="profile_li"><a class="profile" href="<?php echo BASE_URL . '/chatRoom/admin/index.php' ?>"><span class="picon"><i class="fas fa-comments"></i>
+                                    </span>Join Rooms</a>
 
+                            </li>
+                        <?php else : ?>
+                            <li class="profile_li"><a class="profile" href="<?php echo BASE_URL . '/chatRoom/user/index.php' ?>"><span class="picon"><i class="fas fa-comments"></i>
+                                    </span>Join Rooms</a>
+
+                            </li>
+                        <?php endif; ?>
                         <li><a class="logout" href="<?php echo BASE_URL . '/logout.php' ?>"><span class="picon"><i class="fas fa-sign-out-alt"></i></span>Logout</a></li>
                     </ul>
                 </div>

@@ -10,7 +10,7 @@
             <tr>
                 <th>Name</th>
 				<th>Username</th>
-				<th>Password</th>
+				<th>Email</th>
 				<th>Photo</th>
 				<th>Access</th>
 				<th>Action</th>
@@ -18,13 +18,13 @@
 		</thead>
 		<tbody>
 		<?php
-			$query=mysqli_query($conn,"select * from `user` order by uname asc");
+			$query=mysqli_query($conn,"select * from `users` order by uname asc");
 			while($row=mysqli_fetch_array($query)){
 			?>
 			<tr>
-				<td><input type="hidden" id="ename<?php echo $row['userid']; ?>" value="<?php echo $row['uname']; ?>"><?php echo $row['uname']; ?></td>
-				<td><input type="hidden" id="eusername<?php echo $row['userid']; ?>" value="<?php echo $row['username']; ?>"><?php echo $row['username']; ?></td>
-				<td><input type="hidden" id="epassword<?php echo $row['userid']; ?>" value="<?php echo $row['password']; ?>"><?php echo $row['password']; ?></td>
+				<td><input type="hidden" id="ename<?php echo $row['id']; ?>" value="<?php echo $row['uname']; ?>"><?php echo $row['uname']; ?></td>
+				<td><input type="hidden" id="eusername<?php echo $row['id']; ?>" value="<?php echo $row['username']; ?>"><?php echo $row['username']; ?></td>
+				<td><input type="hidden" id="eemail<?php echo $row['id']; ?>" value="<?php echo $row['email']; ?>"><?php echo $row['email']; ?></td>
 				<td><img src="../<?php if(empty($row['photo'])){echo "upload/profile.jpg";}else{echo $row['photo'];} ?>" height="30px;" width="30px;"></td>
 				<td>
 					<?php 
@@ -37,8 +37,8 @@
 					?>
 				</td>
 				<td> 
-					<button type="button" class="btn btn-warning edituser" value="<?php echo $row['userid']; ?>"><span class="glyphicon glyphicon-pencil"></span> Edit</button> || 
-					<button type="button" class="btn btn-danger deleteuser" value="<?php echo $row['userid']; ?>"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+					<button type="button" class="btn btn-warning edituser" value="<?php echo $row['id']; ?>"><span class="glyphicon glyphicon-pencil"></span> Edit</button> || 
+					<button type="button" class="btn btn-danger deleteuser" value="<?php echo $row['id']; ?>"><span class="glyphicon glyphicon-trash"></span> Delete</button>
 				</td>
 			</tr>
 			<?php
