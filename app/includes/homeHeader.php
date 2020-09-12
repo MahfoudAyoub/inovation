@@ -23,21 +23,19 @@
             </li>
         </ul>
     </div>
-
-    <div class="navbar_right">
-        <div class="notifications">
-            <?php if ($_SESSION['admin']) : ?>
-                <a href="<?php echo BASE_URL . '/chatRoom/admin/index.php' ?>">
-                    <div class="icon_wrap"><i class="fas fa-comments"></i></div>
-                </a>
-            <?php else : ?>
-                <a href="<?php echo BASE_URL . '/chatRoom/user/index.php' ?>">
-                    <div class="icon_wrap"><i class="fas fa-comments"></i></div>
-                </a>
-            <?php endif; ?>
-        </div>
-
-        <?php if (isset($_SESSION['id'])) : ?>
+    <?php if (isset($_SESSION['id'])) : ?>
+        <div class="navbar_right">
+            <div class="notifications">
+                <?php if ($_SESSION['admin']) : ?>
+                    <a href="<?php echo BASE_URL . '/chatRoom/admin/index.php' ?>">
+                        <div class="icon_wrap"><i class="fas fa-comments"></i></div>
+                    </a>
+                <?php else : ?>
+                    <a href="<?php echo BASE_URL . '/chatRoom/user/index.php' ?>">
+                        <div class="icon_wrap"><i class="fas fa-comments"></i></div>
+                    </a>
+                <?php endif; ?>
+            </div>
             <div class="profile">
                 <div class="icon_wrap">
                     <img src="<?php echo BASE_URL . '/assets/images/profile_pic.png' ?>" alt="profile_pic">
@@ -84,5 +82,5 @@
                 </div>
             </div>
         <?php endif ?>
-    </div>
+        </div>
 </div>
