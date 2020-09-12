@@ -168,14 +168,14 @@ if (isset($_POST['addComment'])) {
         </div>
 
         <aside class="sidebar">
-          <div class="popular-post">
+          <div style="margin-top: 50px;" class="popular-post">
             <h2>Popular Post</h2>
 
             <?php foreach ($posts as $post) : ?>
               <div class="post-content" data-aos="flip-up" data-aos-delay="200">
                 <div class="post-image">
                   <div>
-                    <img src="<?php echo BASE_URL . '/assets/images/' . $post['image']; ?>" class="img" alt="blog1">
+                    <img style="margin-top: 30px;" src="<?php echo BASE_URL . '/assets/images/' . $post['image']; ?>" class="img" alt="blog1">
                   </div>
                   <div class="post-info flex-row">
                     <span><i class="fas fa-calendar-alt text-gray"></i><?php echo date('F j, Y', strtotime($post['created_at'])); ?></span>

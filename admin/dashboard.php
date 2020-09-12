@@ -56,16 +56,16 @@ adminOnly();
   <?php include(ROOT_PATH . "/app/includes/adminHeader.php"); ?>
   <!-- // header -->
 
-  <div class="admin-wrapper clearfix">
+  <div class="admin-wrapper clearfix" >
     <!-- Left Sidebar -->
     <?php include(ROOT_PATH . "/app/includes/adminSidebar.php"); ?>
     <!-- // Left Sidebar -->
 
     <!-- Admin Content -->
-    <div class="admin-content clearfix">
+    <div class="admin-content clearfix" style="background-image: url('../assets/images/back2.jpg');">
 
-      <div class="">
-        <h2 style="text-align: center;">Dahboard</h2>
+      <div class="" >
+        <h2 style="text-align: center;">welcome Admin</h2>
         <?php include(ROOT_PATH . "/app/includes/messages.php"); ?>
       </div>
     </div>

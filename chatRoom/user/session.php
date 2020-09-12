@@ -6,4 +6,5 @@
 	$srow=mysqli_fetch_array($sq);
 
 	$user=$srow['username'];
+	$photo=$srow['photo'];
 ?>

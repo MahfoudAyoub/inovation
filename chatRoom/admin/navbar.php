@@ -8,13 +8,12 @@
 	<div class="container-fluid">
 		<ul class="nav navbar-nav">
 			<li><a href="index.php"><i class="fas fa-comments"></i> Chat Rooms</a></li>
-			<li><a href="user.php"><span class="glyphicon glyphicon-user"></span> Users</a></li>
-			<li><a href="user.php"><i class="fas fa-upload"></i></span> Posts</a></li>
-			<li><a href="user.php"><i class="fas fa-boxes"></i></span> Topics</a></li>
+			<li><a href="user.php"><i class="fas fa-users-cog"></i> Users</a></li>
+			<li><a href=<?php echo BASE_URL . "/admin/dashboard.php"?>><i class="fas fa-upload"></i></span> Dashboard</a></li>
 		</ul>
 	</div>
 
-	<div class="navbar_right">
+	<div style="margin-right: 20px;" class="navbar_right">
 		<div class="profile">
 			<div class="icon_wrap">
 				<li style="margin-right: 8px;" class="dropdown">
@@ -35,3 +34,4 @@
 		</div>
 	</div>
 </div>
+

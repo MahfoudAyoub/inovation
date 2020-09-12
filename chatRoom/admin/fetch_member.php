@@ -3,7 +3,7 @@
 	if(isset($_POST['mem'])){
 		$id=$_POST['id'];
 		
-		$memq=mysqli_query($conn,"select * from chat_member left join `user` on user.userid=chat_member.userid where chatroomid='$id'");
+		$memq=mysqli_query($conn,"select * from chat_member left join `users` on users.id=chat_member.userid where chatroomid='$id'");
 		while($memrow=mysqli_fetch_array($memq)){
 			?>
 			<div class="well" style="height: 100px;">

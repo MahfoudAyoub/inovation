@@ -129,7 +129,7 @@ else {
                     </div>
                     <!-- // Search -->
 
-                    <div class="category">
+                    <div style="margin-top: 100px;" class="category">
                         <h2 style="margin-top: 20px;">Category</h2>
                         <ul class="category-list">
                             <?php foreach ($topics as $key => $topic) : ?>

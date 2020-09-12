@@ -18,7 +18,7 @@
 			move_uploaded_file($_FILES["image"]["tmp_name"], "../upload/" . $newFilename);
 			$location = "upload/" . $newFilename;
 			
-			mysqli_query($conn,"update `user` set photo='$location' where userid='".$_SESSION['id']."'");
+			mysqli_query($conn,"update `users` set photo='$location' where id='".$_SESSION['id']."'");
 	
 			?>
 				<script>

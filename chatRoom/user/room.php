@@ -51,7 +51,7 @@
 				<div class="panel panel-default" style="height: 400px;">
 					<div style="height:10px;"></div>
 					<span style="margin-left:10px;">Welcome to Chatroom</span><br>
-					<span style="font-size:10px; margin-left:10px;"><i>Note: Avoid using foul language and hate speech to avoid banning of account</i></span>
+					<span style="font-size:12px; margin-left:10px; color:crimson;"><i>Note: Avoid using foul language and hate speech to avoid banning of account</i></span>
 					<div style="height:10px;"></div>
 					<div id="chat_area" style="margin-left:10px; max-height:320px; overflow-y:scroll;">
 					</div>

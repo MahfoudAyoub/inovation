@@ -7,7 +7,9 @@
 
     <div class="navbar_right">
         <div class="notifications">
-            <div class="icon_wrap"><i class="far fa-bell"></i></div>
+            <a href="<?php echo BASE_URL . '/chatRoom/admin/index.php' ?>">
+                <div class="icon_wrap"><i class="fas fa-comments"></i></div>
+            </a>
         </div>
 
 

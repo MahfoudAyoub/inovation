@@ -70,7 +70,7 @@ $posts = getPublishedPost();
         <a href="index.php" class="btn btn-sm">Manage Posts</a>
       </div>
       <div class="">
-        <h2 style="text-align: center;">Manage Posts</h2>
+        <h2 style="text-align: center; color:darkviolet; font:italic">Manage Posts</h2>
         <?php include(ROOT_PATH . "/app/includes/messages.php"); ?>
         <table>
           <thead>
