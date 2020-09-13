@@ -1,25 +1,30 @@
 <?php
-    include("path.php");
-    include(ROOT_PATH . "/app/controllers/topics.php");
+include("path.php");
+include(ROOT_PATH . "/app/controllers/topics.php");
 
 
-    $posts = array();
-    $postTitle = 'Recent Posts';
+$posts = array();
+$postTitle = 'Recent Posts';
+if(isset($_SESSION['id'])){
+    $sq = mysqli_query($conn, "select * from `users` where id='" . $_SESSION['id'] . "'");
+    $srow = mysqli_fetch_array($sq);
+    $photo = $srow['photo'];
+  }
 
-    //fetching posts by topic
-    if (isset($_GET['t_id'])) {
-        $posts = getPostByTopicId($_GET['t_id']);
-        $postTitle = "You Searched For Posts under '" . $_GET['name'] . "' :";
-    }
-    //searching
-    else if (isset($_POST['search-term'])) {
-        $postTitle = "You Searched For '" . $_POST['search-term'] . "' :";
-        $posts = searchPosts($_POST['search-term']);
-    }
-    //get all published posts from database 
-    else {
-        $posts = getPublishedPost();
-    }
+//fetching posts by topic
+if (isset($_GET['t_id'])) {
+    $posts = getPostByTopicId($_GET['t_id']);
+    $postTitle = "You Searched For Posts under '" . $_GET['name'] . "' :";
+}
+//searching
+else if (isset($_POST['search-term'])) {
+    $postTitle = "You Searched For '" . $_POST['search-term'] . "' :";
+    $posts = searchPosts($_POST['search-term']);
+}
+//get all published posts from database 
+else {
+    $posts = getPublishedPost();
+}
 ?>
 
 <!DOCTYPE html>
@@ -134,7 +139,7 @@
         <section id="posts" class="container">
             <div class="site-content">
                 <div class="posts">
-                <h2><?php echo $postTitle; ?></h2>
+                    <h2><?php echo $postTitle; ?></h2>
                     <?php foreach ($posts as $post) : ?>
                         <div class="post-content" data-aos="zoom-in" data-aos-delay="200">
                             <div class="post-image">
@@ -151,7 +156,7 @@
                                 <a href="single.php?id=<?php echo $post['id']; ?>&username=<?php echo $post['username']; ?>"><?php echo $post['title']; ?></a>
                                 <p><?php echo  html_entity_decode(substr($post['body'], 0, 150) . '...'); ?>
                                 </p>
-                                <button  style="margin: 20px;" class="btn post-btn"><a href="single.php?id=<?php echo $post['id']; ?>&username=<?php echo $post['username']; ?>">Read More </a> <i class="fas fa-arrow-right"></i></button>
+                                <button style="margin: 20px;" class="btn post-btn"><a href="single.php?id=<?php echo $post['id']; ?>&username=<?php echo $post['username']; ?>">Read More </a> <i class="fas fa-arrow-right"></i></button>
                             </div>
                         </div>
                         <hr>
@@ -172,8 +177,8 @@
                     <!-- Search -->
                     <div class="category">
                         <ul class="search-div">
-                            <h2  style="margin-top: 10px;">Search</h2>
-                            <form  style="margin-top: 10px;" action="index.php" method="post">
+                            <h2 style="margin-top: 10px;">Search</h2>
+                            <form style="margin-top: 10px;" action="index.php" method="post">
                                 <input type="text" name="search-term" class="fas fa-chevron-right" class="text-input" placeholder="Search...">
                             </form>
                         </ul>
@@ -181,7 +186,7 @@
                     <!-- // Search -->
 
                     <div class="category">
-                        <h2  style="margin-top: 20px;">Category</h2>
+                        <h2 style="margin-top: 20px;">Category</h2>
                         <ul class="category-list">
                             <?php foreach ($topics as $key => $topic) : ?>
                                 <li class="list-items" data-aos="fade-left" data-aos-delay="100">

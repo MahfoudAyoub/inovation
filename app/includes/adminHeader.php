@@ -15,7 +15,11 @@
 
         <div class="profile">
             <div class="icon_wrap">
-                <img src="<?php echo BASE_URL . '/assets/images/profile_pic.png' ?>" alt="profile_pic">
+                <img src="<?php if (empty($photo)) {
+                                echo BASE_URL . '/assets/images/profile_pic.png';
+                            } else {
+                                echo BASE_URL . '/chatRoom/' . $photo;
+                            } ?>" height="30px;" width="30px;" alt="profile_pic">
                 <span class="name"><?php echo $_SESSION['username']; ?></span>
                 <i class="fas fa-chevron-down"></i>
             </div>

@@ -5,6 +5,7 @@ include(ROOT_PATH . "/app/controllers/users.php");
 $id = "";
 $username = "";
 $email    = "";
+$photo    = "";
 $address    = "please add your address";
 $phone    = "please add your address";
 $admin    = "";
@@ -12,11 +13,17 @@ $password = "";
 $passwordConf = "";
 $table = 'users';
 $errors = array();
-
+if(isset($_SESSION['id'])){
+  $sq = mysqli_query($conn, "select * from `users` where id='" . $_SESSION['id'] . "'");
+  $srow = mysqli_fetch_array($sq);
+  $photo = $srow['photo'];
+  $name = $srow['uname'];
+}
 $user = selectOne($table, ['id' => $_SESSION['id']]);
 if (!empty($user)) {
   $id = $user['id'];
   $username = $user['username'];
+  $photo = $user['photo'];
   $admin = $user['admin'];
   $email = $user['email'];
   $address = $user['address'];
@@ -97,9 +104,12 @@ if (!empty($user)) {
   <!----------------------------- Main Site Section ------------------------------>
   <div class="profile-card">
     <div class="image-container">
-      <img src="<?php echo BASE_URL . '/assets/images/profile_pic.png' ?>" style="width : 100%">
+      <img src="<?php if (empty($photo)) {
+									echo BASE_URL . "/chatRoom/upload/profile.jpg";
+								} else {
+									echo BASE_URL.'/chatRoom/'. $photo;
+								} ?>" style="width : 100%">
       <div style="margin: 10px;" class="title">
-        <h2> <?php echo $username; ?> <a style="margin-left:5px;" href="#" class="button">Edit profile</a></h2>
       </div>
     </div>
     <div class="main-container">

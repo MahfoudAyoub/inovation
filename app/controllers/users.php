@@ -11,7 +11,7 @@ $uname = "";
 $email    = "";
 $address    = "";
 $phone    = "";
-$admin    = "";
+$photo    = "";
 $password = "";
 $passwordConf = "";
 $table = 'users';
@@ -23,11 +23,12 @@ function loginUser($user)
 {
     $_SESSION['id'] = $user['id'];
     $_SESSION['username'] = $user['username'];
-    $_SESSION['admin'] = $user['admin'];
+    $_SESSION['photo'] = $user['photo'];
+    $_SESSION['access'] = $user['access'];
     $_SESSION['message'] = 'You are now logged in';
     $_SESSION['type'] = 'success';
 
-    if ($_SESSION['admin']) {
+    if ($_SESSION['access']==1) {
         header('location: ' . BASE_URL . '/admin/dashboard.php');
     } else {
         header('location: ' . BASE_URL . '/index.php');
@@ -102,7 +103,8 @@ if (isset($_GET['id'])) {
     $id = $user['id'];
     $uname = $user['uname'];
     $username = $user['username'];
-    $admin = $user['admin'];
+    $photo = $user['photo'];
+    $access = $user['access'];
     $email    = $user['email'];
     $address    = $user['address'];
     $phone    = $user['phone'];

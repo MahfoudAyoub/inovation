@@ -10,6 +10,11 @@ if (isset($_GET['id'])) {
   $sqlNumComments = $conn->query("SELECT comments.id,postID, username, comment, DATE_FORMAT(comments.createdOn, '%Y-%m-%d') AS createdOn FROM comments INNER JOIN users ON comments.userID = users.id WHERE postID = $postID");
   $numComments = $sqlNumComments->num_rows;
 }
+if(isset($_SESSION['id'])){
+  $sq = mysqli_query($conn, "select * from `users` where id='" . $_SESSION['id'] . "'");
+  $srow = mysqli_fetch_array($sq);
+  $photo = $srow['photo'];
+}
 
 $posts = selectAll('posts', ['published' => 1]);
 $topics = selectAll('topics');

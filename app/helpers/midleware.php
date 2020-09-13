@@ -12,7 +12,7 @@ function usersOnly($redirect = '/index.php')
 
 function adminOnly($redirect = '/index.php')
 {
-    if (empty($_SESSION['id']) || empty($_SESSION['admin'])) {
+    if (empty($_SESSION['id']) || empty($_SESSION['access']==1)) {
         $_SESSION['message'] = 'You are not authorized';
         $_SESSION['type'] = 'error';
         header('location: ' . BASE_URL . $redirect);
@@ -22,7 +22,7 @@ function adminOnly($redirect = '/index.php')
 
 function guestsOnly($redirect = '/index.php')
 {
-    if (isset($_SESSION['admin'])) {
+    if ($_SESSION['access']==1) {
         header('location: ' . BASE_URL . $redirect);
         exit();
     }

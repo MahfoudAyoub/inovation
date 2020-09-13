@@ -5,7 +5,11 @@ include(ROOT_PATH . "/app/controllers/topics.php");
 
 $posts = array();
 $postTitle = 'Recent Posts';
-
+if (isset($_SESSION['id'])) {
+    $sq = mysqli_query($conn, "select * from `users` where id='" . $_SESSION['id'] . "'");
+    $srow = mysqli_fetch_array($sq);
+    $photo = $srow['photo'];
+}
 //fetching posts by topic
 if (isset($_GET['t_id'])) {
     $posts = getPostByTopicId($_GET['t_id']);

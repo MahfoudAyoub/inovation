@@ -2,6 +2,14 @@
 include("../path.php");
 include(ROOT_PATH . "/app/controllers/posts.php");
 adminOnly();
+
+if(isset($_SESSION['id'])){
+  $sq = mysqli_query($conn, "select * from `users` where id='" . $_SESSION['id'] . "'");
+  $srow = mysqli_fetch_array($sq);
+  $photo = $srow['photo'];
+}
+
+
 ?>
 
 <!DOCTYPE html>

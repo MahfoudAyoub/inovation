@@ -82,11 +82,15 @@ $(document).ready(function(){
 		var name=$('#ename'+rid).val();
 		var username=$('#eusername'+rid).val();
 		var email=$('#eemail'+rid).val();
+		var address=$('#eaddress'+rid).val();
+		var phone=$('#ephone'+rid).val();
 		var password=$('#epassword'+rid).val();
 		$('#edit_user').modal('show');
 		$('.modal-body #user_name').val(name);
 		$('.modal-body #user_user').val(username);
 		$('.modal-body #user_email').val(email);
+		$('.modal-body #user_address').val(address);
+		$('.modal-body #user_phone').val(phone);
 		$('.modal-body #user_pass').val(password);
 		$('.modal-footer #confirm_update').val(rid);
 	});
@@ -96,6 +100,8 @@ $(document).ready(function(){
 		var nname=$('#user_name').val();
 		var nuser=$('#user_user').val();
 		var nemail=$('#user_email').val();
+		var naddress=$('#user_address').val();
+		var nphone=$('#user_phone').val();
 		var npass=$('#user_pass').val();
 		$('#edit_user').modal('hide');
 		$('body').removeClass('modal-open');
@@ -108,6 +114,8 @@ $(document).ready(function(){
 					name: nname,
 					username: nuser,
 					email: nemail,
+					address: naddress,
+					phone: nphone,
 					password: npass,
 					edit: 1,
 				},

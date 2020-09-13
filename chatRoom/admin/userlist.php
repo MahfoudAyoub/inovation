@@ -11,6 +11,8 @@
                 <th>Name</th>
 				<th>Username</th>
 				<th>Email</th>
+				<th>Address</th>
+				<th>Phone</th>
 				<th>Photo</th>
 				<th>Access</th>
 				<th>Action</th>
@@ -25,6 +27,8 @@
 				<td><input type="hidden" id="ename<?php echo $row['id']; ?>" value="<?php echo $row['uname']; ?>"><?php echo $row['uname']; ?></td>
 				<td><input type="hidden" id="eusername<?php echo $row['id']; ?>" value="<?php echo $row['username']; ?>"><?php echo $row['username']; ?></td>
 				<td><input type="hidden" id="eemail<?php echo $row['id']; ?>" value="<?php echo $row['email']; ?>"><?php echo $row['email']; ?></td>
+				<td><input type="hidden" id="eaddress<?php echo $row['id']; ?>" value="<?php echo $row['address']; ?>"><?php echo $row['address']; ?></td>
+				<td><input type="hidden" id="ephone<?php echo $row['id']; ?>" value="<?php echo $row['phone']; ?>"><?php echo $row['phone']; ?></td>
 				<td><img src="../<?php if(empty($row['photo'])){echo "upload/profile.jpg";}else{echo $row['photo'];} ?>" height="30px;" width="30px;"></td>
 				<td>
 					<?php 
@@ -37,8 +41,8 @@
 					?>
 				</td>
 				<td> 
-					<button type="button" class="btn btn-warning edituser" value="<?php echo $row['id']; ?>"><span class="glyphicon glyphicon-pencil"></span> Edit</button> || 
-					<button type="button" class="btn btn-danger deleteuser" value="<?php echo $row['id']; ?>"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+					<button type="button" class="btn btn-warning edituser" value="<?php echo $row['id']; ?>"><span class="glyphicon glyphicon-pencil"></span></button> || 
+					<button type="button" class="btn btn-danger deleteuser" value="<?php echo $row['id']; ?>"><span class="glyphicon glyphicon-trash"></span></button>
 				</td>
 			</tr>
 			<?php

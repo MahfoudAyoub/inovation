@@ -72,7 +72,7 @@
 								}
 								$users=implode($mem, "', '");
 								
-								$u=mysqli_query($conn,"select * from `users` where userid not in ('".$users."')");
+								$u=mysqli_query($conn,"select * from `users` where id not in ('".$users."')");
 								if(mysqli_num_rows($u)<1){
 									?>
 									<option value="">No User Available</option>

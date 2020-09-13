@@ -1,9 +1,11 @@
 <div class="navbar" id="navbar">
+
     <div class="navbar_left">
         <div class="logo">
             <a href="<?php echo BASE_URL . '/index.php' ?>">ART-MODE</a>
         </div>
     </div>
+
     <div>
         <ul class="nav-items">
             <li class="nav-link">
@@ -23,10 +25,11 @@
             </li>
         </ul>
     </div>
+
     <?php if (isset($_SESSION['id'])) : ?>
         <div class="navbar_right">
             <div class="notifications">
-                <?php if ($_SESSION['admin']) : ?>
+                <?php if ($_SESSION['access']==1) : ?>
                     <a href="<?php echo BASE_URL . '/chatRoom/admin/index.php' ?>">
                         <div class="icon_wrap"><i class="fas fa-comments"></i></div>
                     </a>
@@ -38,21 +41,25 @@
             </div>
             <div class="profile">
                 <div class="icon_wrap">
-                    <img src="<?php echo BASE_URL . '/assets/images/profile_pic.png' ?>" alt="profile_pic">
+                    <img src="<?php if (empty($photo)) {
+                                    echo BASE_URL . '/assets/images/profile_pic.png';
+                                } else {
+                                    echo BASE_URL . '/chatRoom/' . $photo;
+                                } ?>" height="30px;" width="30px;" alt="profile_pic">
                     <span class="name"><?php echo $_SESSION['username']; ?></span>
                     <i class="fas fa-chevron-down"></i>
                 </div>
 
                 <div class="profile_dd">
                     <ul class="profile_ul">
-                        <?php if ($_SESSION['admin']) : ?>
+                        <?php if ($_SESSION['access']==1) : ?>
                             <li><a class="settings" href="<?php echo BASE_URL . '/admin/dashboard.php' ?>"><span class="picon"><i class="fas fa-cog"></i></span>Dashboard</a></li>
                         <?php endif; ?>
                         <li class="profile_li"><a class="profile" href="<?php echo BASE_URL . '/profile.php' ?>"><span class="picon"><i class="fas fa-user-alt"></i>
                                 </span>Profile</a>
 
                         </li>
-                        <?php if ($_SESSION['admin']) : ?>
+                        <?php if ($_SESSION['access']==1) : ?>
                             <li class="profile_li"><a class="profile" href="<?php echo BASE_URL . '/chatRoom/admin/index.php' ?>"><span class="picon"><i class="fas fa-comments"></i>
                                     </span>Join Rooms</a>
 
