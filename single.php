@@ -183,7 +183,7 @@ if (isset($_POST['addComment'])) {
                   </div>
                 </div>
                 <div class="post-title">
-                  <a href="single.php?id=<?php echo $post['id']; ?>"><?php echo html_entity_decode(substr($post['title'], 0, 50) . '...'); ?></a>
+                  <a href="single.php?id=<?php echo $post['id']; ?>&username=<?php echo $username; ?>"><?php echo html_entity_decode(substr($post['title'], 0, 50) . '...'); ?></a>
                 </div>
               </div>
             <?php endforeach; ?>

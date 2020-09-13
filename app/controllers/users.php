@@ -111,12 +111,17 @@ if (isset($_GET['id'])) {
 
 if (isset($_POST['login-btn'])) {
     $errors = validateLogin($_POST);
-
+    $fusername = $user['username'];
+    $password = $user["password"];
+	$fpassword=md5($password);
+    $query=mysqli_query($conn,"select * from `users` where username='$fusername' and password='$fpassword'");
     if (count($errors) === 0) {
         $user = selectOne($table, ['username' => $_POST['username']]);
-        if ($user && password_verify($_POST['password'], $user['password'])) {
+        if(mysqli_num_rows($query)==0){
+                
             // LOG USER IN
-            loginUser($user);
+            loginUser($user);   
+            
         } else {
             array_push($errors, 'wrong credentials');
         }

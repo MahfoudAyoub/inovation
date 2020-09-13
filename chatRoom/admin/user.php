@@ -33,6 +33,7 @@ $(document).ready(function(){
 		username=$('#uusername').val();
 		email=$('#uemail').val();
 		password=$('#upassword').val();
+		
 		access=$('#uaccess').val();
 			$.ajax({
 				url:"add_user.php",
