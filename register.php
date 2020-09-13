@@ -56,6 +56,10 @@ guestsOnly();
       <h3 class="form-title">Register</h3>
       <?php include(ROOT_PATH . "/app/helpers/formErrors.php"); ?>
       <div>
+        <label>Name</label>
+        <input type="text" name="uname" value="<?php echo $uname; ?>" class="text-input">
+      </div>
+      <div>
         <label>Username</label>
         <input type="text" name="username" value="<?php echo $username; ?>" class="text-input">
       </div>

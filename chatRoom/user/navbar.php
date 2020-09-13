@@ -14,7 +14,7 @@
 	
 	</div>
 
-	<div class="navbar_right">
+	<div style="margin-right: 20px;" class="navbar_right">
 		<div class="profile">
 			<div class="icon_wrap">
 				<li style="margin-right: 8px;" class="dropdown">

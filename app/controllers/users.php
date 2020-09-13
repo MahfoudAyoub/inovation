@@ -7,6 +7,7 @@ include(ROOT_PATH . "/app/helpers/midleware.php");
 // variable declaration
 $id = "";
 $username = "";
+$uname = "";
 $email    = "";
 $address    = "";
 $phone    = "";
@@ -59,6 +60,7 @@ if (isset($_POST['register-btn']) || isset($_POST['create-admin'])) {
             loginUser($user);
         }
     } else {
+        $uname = $_POST['uname'];
         $username = $_POST['username'];
         $admin = isset($_POST['admin']) ? 1 : 0;
         $email    = $_POST['email'];
@@ -98,6 +100,7 @@ if (isset($_POST['update-user'])) {
 if (isset($_GET['id'])) {
     $user = selectOne($table, ['id' => $_GET['id']]);
     $id = $user['id'];
+    $uname = $user['uname'];
     $username = $user['username'];
     $admin = $user['admin'];
     $email    = $user['email'];
