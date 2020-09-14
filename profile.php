@@ -102,24 +102,27 @@ if (!empty($user)) {
   <!-- ------------x---------------  Navigation --------------------------x------------------- -->
 
   <!----------------------------- Main Site Section ------------------------------>
-  <div class="profile-card">
-    <div class="image-container">
-      <img src="<?php if (empty($photo)) {
-                  echo BASE_URL . "/chatRoom/upload/profile.jpg";
-                } else {
-                  echo BASE_URL . '/chatRoom/' . $photo;
-                } ?>" style="width : 100%">
-      <div style="margin: 10px;" class="title">
+  <section style="background-image: url('assets/images/Abract01.png');background-repeat: no-repeat;
+    background-position: right;height: 100vh;width: 100%;background-size: 65%;">
+    <div class="profile-card">
+      <div class="image-container">
+        <img src="<?php if (empty($photo)) {
+                    echo BASE_URL . "/chatRoom/upload/profile.jpg";
+                  } else {
+                    echo BASE_URL . '/chatRoom/' . $photo;
+                  } ?>" style="width : 100%">
+        <div style="margin: 10px;" class="title">
+        </div>
+      </div>
+      <div class="main-container">
+      <p style="margin-top: 10px;"><i class="fas fa-user-tie info"></i> <?php echo $username; ?></p>
+        <p style="margin-top: 10px;"><i class="fa fa-envelope info"></i> <?php echo $email; ?></p>
+        <p style="margin-top: 10px;"><i class="fa fa-phone info"></i> <?php echo $phone; ?></p>
+        <p style="margin-top: 10px;"><i class="fa fa-home info"></i> <?php echo $address; ?></p>
+        <hr style="margin-top: 10px;">
       </div>
     </div>
-    <div class="main-container">
-    <p style="margin-top: 10px;"><i class="fas fa-user-tie info"></i> <?php echo $username; ?></p>
-      <p style="margin-top: 10px;"><i class="fa fa-envelope info"></i> <?php echo $email; ?></p>
-      <p style="margin-top: 10px;"><i class="fa fa-phone info"></i> <?php echo $phone; ?></p>
-      <p style="margin-top: 10px;"><i class="fa fa-home info"></i> <?php echo $address; ?></p>
-      <hr style="margin-top: 10px;">
-    </div>
-  </div>
+  </section>
 
 
 

@@ -88,7 +88,7 @@ if (!empty($user)) {
 
 </head>
 
-<body>
+<body style="background-image: url('assets/images/Abract01.png');">
 
     <!-- ----------------------------  Navigation ---------------------------------------------- -->
     <nav>
@@ -98,33 +98,37 @@ if (!empty($user)) {
     <!-- ------------x---------------  Navigation --------------------------x------------------- -->
 
     <!----------------------------- Main Site Section ------------------------------>
-    <?php
-    $query = mysqli_query($conn, "select * from `users` WHERE access = 1 order by uname asc");
-    while ($row = mysqli_fetch_array($query)) {
-    ?>
-        <div class="profile-card">
-            <div class="image-container">
-                <img src="<?php if (empty($row['photo'])) {
-                                echo BASE_URL . "/chatRoom/upload/profile.jpg";
-                            } else {
-                                echo BASE_URL . '/chatRoom/' . $row['photo'];
-                            } ?>" style="width : 100%; height:300px;">
-                <div style="margin: 10px;" class="title">
+    <section style="background-image: url('assets/images/Abract01.png');background-repeat: no-repeat;
+    background-position: right;height: 100vh;width: 100%;background-size: 65%;">
+
+        <?php
+        $query = mysqli_query($conn, "select * from `users` WHERE access = 1 order by uname asc");
+        while ($row = mysqli_fetch_array($query)) {
+        ?>
+            <div class="profile-card">
+                <div class="image-container">
+                    <img src="<?php if (empty($row['photo'])) {
+                                    echo BASE_URL . "/chatRoom/upload/profile.jpg";
+                                } else {
+                                    echo BASE_URL . '/chatRoom/' . $row['photo'];
+                                } ?>" style="width : 100%; height:300px;">
+                    <div style="margin: 10px;" class="title">
+                    </div>
+                </div>
+                <div class="main-container">
+                    <p style="margin-top: 10px;"><i class="fas fa-user-tie info"></i> <?php echo $row['uname']; ?></p>
+                    <p style="margin-top: 10px;"><i class="fas fa-briefcase info"></i> <?php echo $row['job']; ?></p>
+                    <p style="margin-top: 10px;"><i class="fa fa-envelope info"></i> <?php echo $row['email']; ?></p>
+                    <p style="margin-top: 10px;"><i class="fa fa-phone info"></i> <?php echo $row['phone']; ?></p>
+                    <p style="margin-top: 10px;"><i class="fa fa-home info"></i> <?php echo $row['address']; ?></p>
+                    <hr style="margin-top: 10px;">
                 </div>
             </div>
-            <div class="main-container">
-                <p style="margin-top: 10px;"><i class="fas fa-user-tie info"></i> <?php echo $row['uname']; ?></p>
-                <p style="margin-top: 10px;"><i class="fas fa-briefcase info"></i> <?php echo $row['job']; ?></p>
-                <p style="margin-top: 10px;"><i class="fa fa-envelope info"></i> <?php echo $row['email']; ?></p>
-                <p style="margin-top: 10px;"><i class="fa fa-phone info"></i> <?php echo $row['phone']; ?></p>
-                <p style="margin-top: 10px;"><i class="fa fa-home info"></i> <?php echo $row['address']; ?></p>
-                <hr style="margin-top: 10px;">
-            </div>
-        </div>
-    <?php
-    }
-    ?>
+        <?php
+        }
+        ?>
 
+    </section>
 
 
     <!-- Jquery Library file -->
