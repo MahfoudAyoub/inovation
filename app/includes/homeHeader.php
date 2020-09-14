@@ -41,7 +41,7 @@
             </div>
             <div class="profile">
                 <div class="icon_wrap">
-                    <img src="<?php if (empty($photo)) {
+                    <img style="max-width: 100%;border-radius: 50%;height:40px; width:40px;" src="<?php if (empty($photo)) {
                                     echo BASE_URL . '/assets/images/profile_pic.png';
                                 } else {
                                     echo BASE_URL . '/chatRoom/' . $photo;

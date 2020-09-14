@@ -6,7 +6,6 @@ include("../../path.php");?>
 	
 	$chatq=mysqli_query($conn,"select * from chatroom where chatroomid='$id'");
 	$chatrow=mysqli_fetch_array($chatq);
-	
 	$cmem=mysqli_query($conn,"select * from chat_member where chatroomid='$id'");
 ?>
 <body>
