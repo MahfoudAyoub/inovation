@@ -13,7 +13,7 @@ $password = "";
 $passwordConf = "";
 $table = 'users';
 $errors = array();
-if(isset($_SESSION['id'])){
+if (isset($_SESSION['id'])) {
   $sq = mysqli_query($conn, "select * from `users` where id='" . $_SESSION['id'] . "'");
   $srow = mysqli_fetch_array($sq);
   $photo = $srow['photo'];
@@ -22,7 +22,7 @@ if(isset($_SESSION['id'])){
 $user = selectOne($table, ['id' => $_SESSION['id']]);
 if (!empty($user)) {
   $id = $user['id'];
-  $username = $user['username'];
+  $username = $user['uname'];
   $photo = $user['photo'];
   $admin = $user['admin'];
   $email = $user['email'];
@@ -105,15 +105,16 @@ if (!empty($user)) {
   <div class="profile-card">
     <div class="image-container">
       <img src="<?php if (empty($photo)) {
-									echo BASE_URL . "/chatRoom/upload/profile.jpg";
-								} else {
-									echo BASE_URL.'/chatRoom/'. $photo;
-								} ?>" style="width : 100%">
+                  echo BASE_URL . "/chatRoom/upload/profile.jpg";
+                } else {
+                  echo BASE_URL . '/chatRoom/' . $photo;
+                } ?>" style="width : 100%">
       <div style="margin: 10px;" class="title">
       </div>
     </div>
     <div class="main-container">
-      <p><i class="fa fa-envelope info"></i> <?php echo $email; ?></p>
+    <p style="margin-top: 10px;"><i class="fas fa-user-tie info"></i> <?php echo $username; ?></p>
+      <p style="margin-top: 10px;"><i class="fa fa-envelope info"></i> <?php echo $email; ?></p>
       <p style="margin-top: 10px;"><i class="fa fa-phone info"></i> <?php echo $phone; ?></p>
       <p style="margin-top: 10px;"><i class="fa fa-home info"></i> <?php echo $address; ?></p>
       <hr style="margin-top: 10px;">

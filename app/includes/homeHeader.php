@@ -12,7 +12,7 @@
                 <a href="<?php echo BASE_URL . '/index.php' ?>">Home</a>
             </li>
             <li class="nav-link">
-                <a href="#home">Category</a>
+                <a href="<?php echo BASE_URL . '/video.php' ?>">Video</a>
             </li>
             <li class="nav-link">
                 <a href="<?php echo BASE_URL . '/Posts.php' ?>">Posts</a>
@@ -21,7 +21,7 @@
                 <a href="<?php echo BASE_URL . '/about.php' ?>">About</a>
             </li>
             <li class="nav-link">
-                <a href="#">Contact Us</a>
+                <a href="<?php echo BASE_URL . '/contact.php' ?>">Contact Us</a>
             </li>
         </ul>
     </div>
