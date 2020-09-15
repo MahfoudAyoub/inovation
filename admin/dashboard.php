@@ -3,7 +3,7 @@ include("../path.php");
 include(ROOT_PATH . "/app/controllers/posts.php");
 adminOnly();
 
-if(isset($_SESSION['id'])){
+if (isset($_SESSION['id'])) {
   $sq = mysqli_query($conn, "select * from `users` where id='" . $_SESSION['id'] . "'");
   $srow = mysqli_fetch_array($sq);
   $photo = $srow['photo'];
@@ -19,6 +19,7 @@ if(isset($_SESSION['id'])){
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>ART | DESIGN | admin</title>
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -64,16 +65,18 @@ if(isset($_SESSION['id'])){
   <?php include(ROOT_PATH . "/app/includes/adminHeader.php"); ?>
   <!-- // header -->
 
-  <div class="admin-wrapper clearfix" >
+  <div class="admin-wrapper clearfix">
     <!-- Left Sidebar -->
     <?php include(ROOT_PATH . "/app/includes/adminSidebar.php"); ?>
     <!-- // Left Sidebar -->
 
     <!-- Admin Content -->
-    <div class="admin-content clearfix" style="background-image: url('../assets/images/back2.jpg');">
+    <div class="admin-content clearfix" style="background-image: url('../assets/images/amin.jpeg');">
 
-      <div class="" >
-        <h2 style="text-align: center;">welcome Admin</h2>
+      <div class="">
+        <div class="site-background" data-aos="fade-up" data-aos-delay="100">
+          <h3 style="color: wheat; font:italic;background-size: cover;height: 110vh;display: flex;">welcome Admin</h3>
+        </div>
         <?php include(ROOT_PATH . "/app/includes/messages.php"); ?>
       </div>
     </div>

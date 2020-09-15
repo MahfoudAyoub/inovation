@@ -12,9 +12,6 @@
                 <a href="<?php echo BASE_URL . '/index.php' ?>">Home</a>
             </li>
             <li class="nav-link">
-                <a href="<?php echo BASE_URL . '/video.php' ?>">Video</a>
-            </li>
-            <li class="nav-link">
                 <a href="<?php echo BASE_URL . '/Posts.php' ?>">Posts</a>
             </li>
             <li class="nav-link">

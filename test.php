@@ -1,77 +1,8 @@
 <?php
 include("path.php");
-include(ROOT_PATH . "/app/controllers/posts.php");
-
-
-if (isset($_GET['id'])) {
-  $post = selectOne('posts', ['id' => $_GET['id']]);
-  $username = $_GET['username'];
-  $postID = $_GET['id'];
-  $sqlNumComments = $conn->query("SELECT comments.id,postID, username, comment, DATE_FORMAT(comments.createdOn, '%Y-%m-%d') AS createdOn FROM comments INNER JOIN users ON comments.userID = users.id WHERE postID = $postID");
-  $numComments = $sqlNumComments->num_rows;
-}
-
-$posts = selectAll('posts', ['published' => 1]);
-$topics = selectAll('topics');
-function createCommentRow($data)
-{
-  global $conn;
-  //$postID = $_GET['id'];
-  $response = '
-          <div class="comment">
-              <div class="user">' . $data['username'] . ' <span class="time">' . $data['createdOn'] . '</span></div>
-              <div class="userComment">' . $data['comment'] . '</div>
-              <div class="reply"><a href="javascript:void(0)" data-commentID="' . $data['id'] . '" onclick="reply(this)">Replay</a></div>
-              <div class="replies">';
-
-  $sql = $conn->query("SELECT replies.id, username, comment, DATE_FORMAT(replies.createdOn, '%Y-%m-%d') AS createdOn FROM replies INNER JOIN users ON replies.userID = users.id WHERE replies.commentID = '" . $data['id'] . "' ORDER BY replies.id DESC LIMIT 1");
-  while ($dataR = $sql->fetch_assoc())
-    $response .= createCommentRow($dataR);
-
-  $response .= '
-                      </div>
-          </div>
-      ';
-
-  return $response;
-}
-
-if (isset($_POST['getAllComments'])) {
-  $start = $conn->real_escape_string($_POST['start']);
-  $postID = $_POST['postID'];
-  $response = "";
-  $sql = $conn->query("SELECT comments.id,postID, username, comment, DATE_FORMAT(comments.createdOn, '%Y-%m-%d') AS createdOn FROM comments INNER JOIN users ON comments.userID = users.id WHERE postID = $postID   ORDER BY comments.id DESC LIMIT $start, 20");
-  while ($data = $sql->fetch_assoc())
-    $response .= createCommentRow($data);
-
-  exit($response);
-}
-
-//echo $postID;
-if (isset($_POST['addComment'])) {
-  global $conn;
-  unset($_POST['addComment']);
-  $comment = $conn->real_escape_string($_POST['comment']);
-  $isReply = $conn->real_escape_string($_POST['isReply']);
-  $commentID = $conn->real_escape_string($_POST['commentID']);
-  $_POST['userID'] = $_SESSION['id'];
-  $postID = $_POST['postID'];
-
-  if ($isReply != 'false') {
-    $conn->query("INSERT INTO replies (comment, commentID, userID, postID, createdOn) VALUES ('$comment', '$commentID', '" . $_SESSION['id'] . "', $postID, NOW())");
-    $sql = $conn->query("SELECT replies.id,postID, username, comment, DATE_FORMAT(replies.createdOn, '%Y-%m-%d') AS createdOn FROM replies INNER JOIN users ON replies.userID = users.id WHERE postID = $postID ORDER BY replies.id DESC LIMIT 1");
-  } else {
-
-    $conn->query("INSERT INTO comments (userID,postID, comment, createdOn) VALUES ('".$_SESSION['id']."', '$postID','$comment',NOW())");
-    $sql = $conn->query("SELECT comments.id,postID, username, comment, DATE_FORMAT(comments.createdOn, '%Y-%m-%d') AS createdOn FROM comments INNER JOIN users ON comments.userID = users.id WHERE postID = $postID  ORDER BY comments.id DESC LIMIT 1");
-  }
-  //$_POST['postID'] = $postID;
-  $data = $sql->fetch_assoc();
-  exit(createCommentRow($data));
-}
+include(ROOT_PATH . "/app/controllers/topics.php");
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -80,7 +11,7 @@ if (isset($_POST['addComment'])) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Blooger</title>
+  <title>ART|DESIGN</title>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="assets/css/all.css">
@@ -125,7 +56,7 @@ if (isset($_POST['addComment'])) {
 
 </head>
 
-<body>
+<body data-spy="scroll" data-target=".navbar" data-offset="60">
 
   <!-- ----------------------------  Navigation ---------------------------------------------- -->
   <nav>
@@ -138,74 +69,50 @@ if (isset($_POST['addComment'])) {
 
   <main>
 
-    <!-- ---------------------- Site Content -------------------------->
+    <!------------------------ Site Title ---------------------->
 
-    <section class="container">
-      <div class="site-content">
-        <div class="posts">
-          <div class="post-content" data-aos="zoom-in" data-aos-delay="200">
-            <div class="post-image">
-              <div>
-                <img src="<?php echo BASE_URL . '/assets/images/' . $post['image']; ?>" class="img" style="height: 400px; width: 800px; border-top-left-radius: 5px; border-top-right-radius: 5px;" alt="">
+    <!------------x----------- Site Title ----------x----------->
+
+    <!-- --------------------- Blog Carousel ----------------- -->
+
+    <section id="blogs">
+
+      <div class="blog">
+        <div class="container">
+          <div class="owl-carousel owl-theme blog-post">
+            <?php
+            $query = mysqli_query($conn, "select * from `users` WHERE access = 1 order by uname asc");
+            while ($row = mysqli_fetch_array($query)) {
+            ?>
+              <div class="blog-content" data-aos="fade-right" data-aos-delay="200">
+                <img style="height: 200px;" src="<?php if (empty($row['photo'])) {
+                        echo BASE_URL . "/chatRoom/upload/profile.jpg";
+                      } else {
+                        echo BASE_URL . '/chatRoom/' . $row['photo'];
+                      } ?>" alt="post-1">
+                <div class="blog-title">
+                <h3><i class="fas fa-user-tie info"></i> <?php echo $row['uname']; ?></a></h3>
+                <h3><i class="fas fa-briefcase info"></i> <?php echo $row['job']; ?></a></h3>
+                <h3><i class="fa fa-envelope info"></i> <?php echo $row['email']; ?></a></h3>
+                <h3><i class="fa fa-phone info"></i> <?php echo $row['phone']; ?></a></h3>
+                <h3><i class="fa fa-home info"></i> <?php echo $row['address']; ?></a></h3>
+                </div>
               </div>
-              <div class="post-info flex-row">
-                <span><i class="fas fa-user text-gray"></i><?php echo $username; ?></span>
-                <span><i class="fas fa-calendar-alt text-gray"></i><?php echo date('F j, Y', strtotime($post['created_at'])); ?></span>
-                <span><?php echo $numComments ?>  Commets</span>
-              </div>
-            </div>
-            <div class="post-title">
-              <a href="single.php?id=<?php echo $post['id']; ?>"><?php echo $post['title']; ?></a>
-              <p><?php echo  html_entity_decode(nl2br($post['body'])); ?>
-              </p>
-            </div>
+            <?php
+            }
+            ?>
           </div>
-          <hr>
-          <h2>comments</h2>
 
-          <?php include(ROOT_PATH . "/comments.php"); ?>
+          <div class="owl-navigation">
+            <span class="owl-nav-prev"><i class="fas fa-long-arrow-alt-left"></i></span>
+            <span class="owl-nav-next"><i class="fas fa-long-arrow-alt-right"></i></span>
+          </div>
 
         </div>
-
-        <aside class="sidebar">
-          <div class="popular-post">
-            <h2>Popular Post</h2>
-
-            <?php foreach ($posts as $post) : ?>
-              <div class="post-content" data-aos="flip-up" data-aos-delay="200">
-                <div class="post-image">
-                  <div>
-                    <img src="<?php echo BASE_URL . '/assets/images/' . $post['image']; ?>" class="img" alt="blog1">
-                  </div>
-                  <div class="post-info flex-row">
-                    <span><i class="fas fa-calendar-alt text-gray"></i><?php echo date('F j, Y', strtotime($post['created_at'])); ?></span>
-                    <span>2 Commets</span>
-                  </div>
-                </div>
-                <div class="post-title">
-                  <a href="single.php?id=<?php echo $post['id']; ?>"><?php echo html_entity_decode(substr($post['title'], 0, 50) . '...'); ?></a>
-                </div>
-              </div>
-            <?php endforeach; ?>
-
-          </div>
-
-          <div class="popular-tags">
-            <h2>Popular Tags</h2>
-            <div class="tags flex-row">
-
-              <?php foreach ($topics as $key => $topic) : ?>
-                <span class="tag" data-aos="flip-up" data-aos-delay="100"><a href="<?php echo BASE_URL . '/index.php?t_id=' . $topic['id'] . '&name=' . $topic['name'] ?>"><?php echo $topic['name']; ?></a></span>
-              <?php endforeach; ?>
-
-            </div>
-          </div>
-        </aside>
       </div>
     </section>
 
-    <!-- -----------x---------- Site Content -------------x------------>
-
+    <!-- ----------x---------- Blog Carousel --------x-------- -->
   </main>
 
   <!---------------x------------- Main Site Section ---------------x-------------->
@@ -229,84 +136,6 @@ if (isset($_POST['addComment'])) {
 
   <!-- Custom Javascript file -->
   <script src="assets/js/main.js"></script>
-
-  <script type="text/javascript">
-    var isReply = false,
-      commentID = 0,
-      max = <?php echo $numComments ?>;
-
-    $(document).ready(function() {
-
-      $("#addComment, #addReply").on('click', function() {
-        var comment;
-        var postID = '<?php echo $_GET['id']; ?>';
-        if (!isReply)
-          comment = $("#mainComment").val();
-        else
-          comment = $("#replyComment").val();
-        //console.log(postID);
-        if (comment.length > 0) {
-          $.ajax({
-            url: 'single.php',
-            method: 'POST',
-            dataType: 'html',
-            data: {
-              addComment: 1,
-              comment: comment,
-              isReply: isReply,
-              commentID: commentID,
-              postID: postID
-            },
-            success: function(response) {
-              max++;
-              $("#numComments").text(max + " Comments");
-              if (!isReply) {
-                $(".userComments").prepend(response);
-                $("#mainComment").val("");
-              } else {
-                commentID = 0;
-                $("#replyComment").val("");
-                $(".replyRow").hide();
-                $('.replyRow').parent().next().append(response);
-              }
-            }
-          });
-
-        } else
-          alert('Please Check Your Inputs');
-
-      });
-      var postID = '<?php echo $_GET['id']; ?>';
-      getAllComments(postID, 0, max);
-    });
-
-    function reply(caller) {
-      commentID = $(caller).attr('data-commentID');
-      $(".replyRow").insertAfter($(caller));
-      $('.replyRow').show();
-    }
-
-    function getAllComments(postID, start, max) {
-      if (start > max) {
-        return;
-      }
-
-      $.ajax({
-        url: 'single.php',
-        method: 'POST',
-        dataType: 'text',
-        data: {
-          getAllComments: 1,
-          postID: postID,
-          start: start
-        },
-        success: function(response) {
-          $(".userComments").append(response);
-          getAllComments(postID, (start + 20), max);
-        }
-      });
-    }
-  </script>
 </body>
 
 </html>

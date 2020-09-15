@@ -1,148 +1,145 @@
 <?php
 include("path.php");
-include(ROOT_PATH . "/app/controllers/users.php");
-
-$id = "";
-$username = "";
-$email    = "";
-$photo    = "";
-$address    = "please add your address";
-$phone    = "please add your address";
-$admin    = "";
-$password = "";
-$passwordConf = "";
-$table = 'users';
-$errors = array();
+include(ROOT_PATH . "/app/controllers/topics.php");
 if (isset($_SESSION['id'])) {
-    $sq = mysqli_query($conn, "select * from `users` where id='" . $_SESSION['id'] . "'");
-    $srow = mysqli_fetch_array($sq);
-    $photo = $srow['photo'];
-    $name = $srow['uname'];
+  $sq = mysqli_query($conn, "select * from `users` where id='" . $_SESSION['id'] . "'");
+  $srow = mysqli_fetch_array($sq);
+  $photo = $srow['photo'];
 }
-$user = selectOne($table, ['id' => $_SESSION['id']]);
-if (!empty($user)) {
-    $id = $user['id'];
-    $username = $user['uname'];
-    $photo = $user['photo'];
-    $admin = $user['admin'];
-    $email = $user['email'];
-    $address = $user['address'];
-    $phone = $user['phone'];
-}
-
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Blooger</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>ART | DESIGN</title>
 
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="assets/css/all.css">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="assets/css/all.css">
 
 
-    <!-- --------- Owl-Carousel ------------------->
-    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+  <!-- --------- Owl-Carousel ------------------->
+  <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
 
-    <!-- ------------ AOS Library ------------------------- -->
-    <link rel="stylesheet" href="assets/css/aos.css">
+  <!-- ------------ AOS Library ------------------------- -->
+  <link rel="stylesheet" href="assets/css/aos.css">
 
-    <!-- Custom Style   -->
-    <link rel="stylesheet" href="assets/css/Style1.scss">
-    <link rel="stylesheet" href="assets/css/headerStyle.css">
-    <link rel="stylesheet" href="assets/css/profileStyle.scss">
-    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- Custom Style   -->
+  <link rel="stylesheet" href="assets/css/Style1.scss">
+  <link rel="stylesheet" href="assets/css/headerStyle.css">
+  <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <script>
-        $(document).ready(function() {
-            $(".profile .icon_wrap").click(function() {
-                $(this).parent().toggleClass("active");
-                $(".notifications").removeClass("active");
-            });
+  <script>
+    $(document).ready(function() {
+      $(".profile .icon_wrap").click(function() {
+        $(this).parent().toggleClass("active");
+        $(".notifications").removeClass("active");
+      });
 
-            $(".notifications .icon_wrap").click(function() {
-                $(this).parent().toggleClass("active");
-                $(".profile").removeClass("active");
-            });
+      $(".notifications .icon_wrap").click(function() {
+        $(this).parent().toggleClass("active");
+        $(".profile").removeClass("active");
+      });
 
-            $(".show_all .link").click(function() {
-                $(".notifications").removeClass("active");
-                $(".popup").show();
-            });
+      $(".show_all .link").click(function() {
+        $(".notifications").removeClass("active");
+        $(".popup").show();
+      });
 
-            $(".close").click(function() {
-                $(".popup").hide();
-            });
-        });
-    </script>
+      $(".close").click(function() {
+        $(".popup").hide();
+      });
+    });
+  </script>
 
 </head>
 
-<body style="background-image: url('assets/images/Abract01.png');">
+<body data-spy="scroll" data-target=".navbar" data-offset="60">
 
-    <!-- ----------------------------  Navigation ---------------------------------------------- -->
-    <nav>
-        <?php include(ROOT_PATH . "/app/includes/homeHeader.php"); ?>
-    </nav>
+  <!-- ----------------------------  Navigation ---------------------------------------------- -->
+  <nav>
+    <?php include(ROOT_PATH . "/app/includes/homeHeader.php"); ?>
+  </nav>
 
-    <!-- ------------x---------------  Navigation --------------------------x------------------- -->
+  <!-- ------------x---------------  Navigation --------------------------x------------------- -->
 
-    <!----------------------------- Main Site Section ------------------------------>
-    <section style="background-image: url('assets/images/Abract01.png');background-repeat: no-repeat;
-    background-position: right;height: 100vh;width: 100%;background-size: 65%;">
+  <!----------------------------- Main Site Section ------------------------------>
 
-        <?php
-        $query = mysqli_query($conn, "select * from `users` WHERE access = 1 order by uname asc");
-        while ($row = mysqli_fetch_array($query)) {
-        ?>
-            <div class="profile-card">
-                <div class="image-container">
-                    <img src="<?php if (empty($row['photo'])) {
-                                    echo BASE_URL . "/chatRoom/upload/profile.jpg";
-                                } else {
-                                    echo BASE_URL . '/chatRoom/' . $row['photo'];
-                                } ?>" style="width : 100%; height:300px;">
-                    <div style="margin: 10px;" class="title">
-                    </div>
+  <main>
+
+    <!------------------------ Site Title ---------------------->
+
+    <!------------x----------- Site Title ----------x----------->
+
+    <!-- --------------------- Blog Carousel ----------------- -->
+
+    <section id="blogs">
+
+      <div class="blog">
+        <div class="container">
+          <div class="owl-carousel owl-theme blog-post">
+            <?php
+            $query = mysqli_query($conn, "select * from `users` WHERE access = 1 order by uname asc");
+            while ($row = mysqli_fetch_array($query)) {
+            ?>
+              <div class="blog-content" data-aos="fade-right" data-aos-delay="200">
+                <img style="height: 200px;" src="<?php if (empty($row['photo'])) {
+                        echo BASE_URL . "/chatRoom/upload/profile.jpg";
+                      } else {
+                        echo BASE_URL . '/chatRoom/' . $row['photo'];
+                      } ?>" alt="post-1">
+                <div class="blog-title">
+                <h3><i class="fas fa-user-tie info"></i> <?php echo $row['uname']; ?></a></h3>
+                <h3><i class="fas fa-briefcase info"></i> <?php echo $row['job']; ?></a></h3>
+                <h3><i class="fa fa-envelope info"></i> <?php echo $row['email']; ?></a></h3>
+                <h3><i class="fa fa-phone info"></i> <?php echo $row['phone']; ?></a></h3>
+                <h3><i class="fa fa-home info"></i> <?php echo $row['address']; ?></a></h3>
                 </div>
-                <div class="main-container">
-                    <p style="margin-top: 10px;"><i class="fas fa-user-tie info"></i> <?php echo $row['uname']; ?></p>
-                    <p style="margin-top: 10px;"><i class="fas fa-briefcase info"></i> <?php echo $row['job']; ?></p>
-                    <p style="margin-top: 10px;"><i class="fa fa-envelope info"></i> <?php echo $row['email']; ?></p>
-                    <p style="margin-top: 10px;"><i class="fa fa-phone info"></i> <?php echo $row['phone']; ?></p>
-                    <p style="margin-top: 10px;"><i class="fa fa-home info"></i> <?php echo $row['address']; ?></p>
-                    <hr style="margin-top: 10px;">
-                </div>
-            </div>
-        <?php
-        }
-        ?>
+              </div>
+            <?php
+            }
+            ?>
+          </div>
 
+          <div class="owl-navigation">
+            <span class="owl-nav-prev"><i class="fas fa-long-arrow-alt-left"></i></span>
+            <span class="owl-nav-next"><i class="fas fa-long-arrow-alt-right"></i></span>
+          </div>
+
+        </div>
+      </div>
     </section>
 
+    <!-- ----------x---------- Blog Carousel --------x-------- -->
+  </main>
 
-    <!-- Jquery Library file -->
-    <script src="assets/js/Jquery3.4.1.min.js"></script>
-    <script src="assets/js/scripts.js"></script>
+  <!---------------x------------- Main Site Section ---------------x-------------->
 
-    <!-- --------- Owl-Carousel js ------------------->
-    <script src="assets/js/owl.carousel.min.js"></script>
 
-    <!-- ------------ AOS js Library  ------------------------- -->
-    <script src="assets/js/aos.js"></script>
+  <!-- --------------------------- Footer ---------------------------------------- -->
 
-    <!-- Custom Javascript file -->
-    <script src="assets/js/main.js"></script>
+  <?php include(ROOT_PATH . "/app/includes/footer.php"); ?>
+
+  <!-- -------------x------------- Footer --------------------x------------------- -->
+
+  <!-- Jquery Library file -->
+  <script src="assets/js/Jquery3.4.1.min.js"></script>
+  <script src="assets/js/scripts.js"></script>
+
+  <!-- --------- Owl-Carousel js ------------------->
+  <script src="assets/js/owl.carousel.min.js"></script>
+
+  <!-- ------------ AOS js Library  ------------------------- -->
+  <script src="assets/js/aos.js"></script>
+
+  <!-- Custom Javascript file -->
+  <script src="assets/js/main.js"></script>
 </body>
 
 </html>

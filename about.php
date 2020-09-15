@@ -1,30 +1,10 @@
 <?php
 include("path.php");
 include(ROOT_PATH . "/app/controllers/topics.php");
-
-
-$posts = array();
-$postTitle = 'Recent Posts';
-
-if(isset($_SESSION['id'])){
+if (isset($_SESSION['id'])) {
   $sq = mysqli_query($conn, "select * from `users` where id='" . $_SESSION['id'] . "'");
   $srow = mysqli_fetch_array($sq);
   $photo = $srow['photo'];
-}
-
-//fetching posts by topic
-if (isset($_GET['t_id'])) {
-  $posts = getPostByTopicId($_GET['t_id']);
-  $postTitle = "You Searched For Posts under '" . $_GET['name'] . "' :";
-}
-//searching
-else if (isset($_POST['search-term'])) {
-  $postTitle = "You Searched For '" . $_POST['search-term'] . "' :";
-  $posts = searchPosts($_POST['search-term']);
-}
-//get all published posts from database 
-else {
-  $posts = getPublishedPost();
 }
 ?>
 
@@ -35,7 +15,7 @@ else {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Blooger</title>
+  <title>ART | DESIGN</title>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="assets/css/all.css">
@@ -92,15 +72,18 @@ else {
   <!----------------------------- Main Site Section ------------------------------>
 
   <main>
-
-    <!-- --------------------- about content ----------------- -->
-
-    <section>
-      <div class="blog">
-        
+    <section id="home" class="site-title" style="background-image: url('assets/images/back7.jpg');">
+      <div class="site-background" data-aos="fade-up" data-aos-delay="100">
+        <h3>ART & DESIGN</h3>
+        <h1>technological innovation platform dedicated to art-fashion with advice,
+           support in innovation, design, process, etc. 
+           especially through digital.</h1>
       </div>
     </section>
 
+    <!-- --------------------- about content ----------------- -->
+
+    
   </main>
 
   <!---------------x------------- Main Site Section ---------------x-------------->

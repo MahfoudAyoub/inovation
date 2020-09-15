@@ -3,7 +3,7 @@
 
 <head>
 
-	<title>Chat Room | ART-MODE</title>
+	<title>ART | DESIGN | ChatRoom</title>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
@@ -18,10 +18,11 @@
 		img {
 			max-width: 100%;
 			border-radius: 50%;
-			height:30px; 
-			width:30px;
+			height: 30px;
+			width: 30px;
 
 		}
+
 		#chat {
 			padding-left: 0;
 			margin: 0;
