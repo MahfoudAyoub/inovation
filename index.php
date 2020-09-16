@@ -97,7 +97,11 @@ else {
         <section id="home" class="site-title" style="background-image: url('assets/images/back2.jpg');">
             <div class="site-background" data-aos="fade-up" data-aos-delay="100">
                 <h3>ART & DESIGN</h3>
-                <h1>Amazing Place on Degital Word</h1>
+                <h1>“Good design’s not about what medium you’re working in.</h1>
+                <h1>  It’s about thinking hard about what you want to do and what you </h1>
+                <h1>   have to work with before you start.”</h1>
+                
+                <h3> – Susan Kare</h3>
             </div>
         </section>
 

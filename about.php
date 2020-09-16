@@ -75,15 +75,45 @@ if (isset($_SESSION['id'])) {
     <section id="home" class="site-title" style="background-image: url('assets/images/back7.jpg');">
       <div class="site-background" data-aos="fade-up" data-aos-delay="100">
         <h3>ART & DESIGN</h3>
-        <h1>technological innovation platform dedicated to art-fashion with advice,
-           support in innovation, design, process, etc. 
-           especially through digital.</h1>
+        <h2>technological innovation platform dedicated to art-fashion with </h2>
+         <h2> advice,support in innovation, design, process, etc.</h2>
+        <h2> especially through digital.</h2>
+      </div>
+    </section>
+
+    <section id="blogs">
+
+      <div class="blog">
+        <h3 style="margin: 50px;">Developed By :</a></h3>
+        <div class="container">
+          <div class="owl-carousel owl-theme blog-post">
+            <div class="blog-content" data-aos="fade-right" data-aos-delay="200">
+              <img style="height: 280px;width:315px;" src="<?php echo BASE_URL . '/assets/images/ayoub.jpg'; ?>" alt="post-1">
+              <div class="blog-title">
+                <h3>MAHFOUD Ayoub</a></h3>
+                <span>Software engineering at ENSIAS</span>
+              </div>
+            </div>
+            <div class="blog-content" data-aos="fade-right" data-aos-delay="200">
+              <img style="height: 280px; width:315px;" src="<?php echo BASE_URL . '/assets/images/anas.jpeg'; ?>" alt="post-1">
+              <div class="blog-title">
+                <h3>AL-KOURAICHI Anas</a></h3>
+                <span>Software engineering at ENSIAS</span>
+              </div>
+            </div>
+          </div>
+          <div class="owl-navigation">
+            <span class="owl-nav-prev"><i class="fas fa-long-arrow-alt-left"></i></span>
+            <span class="owl-nav-next"><i class="fas fa-long-arrow-alt-right"></i></span>
+          </div>
+
+        </div>
       </div>
     </section>
 
     <!-- --------------------- about content ----------------- -->
 
-    
+
   </main>
 
   <!---------------x------------- Main Site Section ---------------x-------------->

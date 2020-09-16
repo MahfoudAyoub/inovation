@@ -72,15 +72,8 @@ if (isset($_SESSION['id'])) {
   <!----------------------------- Main Site Section ------------------------------>
 
   <main>
-
-    <!------------------------ Site Title ---------------------->
-
-    <!------------x----------- Site Title ----------x----------->
-
-    <!-- --------------------- Blog Carousel ----------------- -->
-
+  <h2 style="margin-top: 50px;margin-left:20px;">Our Managers :</h2>
     <section id="blogs">
-
       <div class="blog">
         <div class="container">
           <div class="owl-carousel owl-theme blog-post">
@@ -116,7 +109,6 @@ if (isset($_SESSION['id'])) {
       </div>
     </section>
 
-    <!-- ----------x---------- Blog Carousel --------x-------- -->
   </main>
 
   <!---------------x------------- Main Site Section ---------------x-------------->
