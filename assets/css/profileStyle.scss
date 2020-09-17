@@ -1,56 +1,57 @@
-
-.profile-card{
-    width: 400px;
-    margin: auto;
-    margin-top: 20px;
-    background: #fff;
-    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.5);
+.profile-card {
+  width: 400px;
+  margin: auto;
+  margin-left: 170px;
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  background: #fff;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.5);
 }
-.image-container{
-    position: relative;
-
+.image-container {
+  position: relative;
 }
-.info{
-    color: #C101FF;
-    margin-right: 15px;
+.info {
+  color: #c101ff;
+  margin-right: 15px;
 }
-.main-container{
-    padding: 20px;
-
+.main-container {
+  padding: 20px;
 }
 .button {
-    padding: 10px;
-    box-shadow: 0px 0px 12px -2px rgba(0,0,0,0.5);
-    line-height: 1.25;
-    background: #C101FF;
-    text-decoration: none;
-    color: white;
-    font-size: 14px;
-    letter-spacing: .08em;
-    position: absolute;;
-    transition: background-color .6s ease;
-    overflow: hidden;
+  padding: 10px;
+  box-shadow: 0px 0px 12px -2px rgba(0, 0, 0, 0.5);
+  line-height: 1.25;
+  background: #c101ff;
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  position: absolute;
+  transition: background-color 0.6s ease;
+  overflow: hidden;
+  &:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: 50%;
+    left: 50%;
+    transform-style: flat;
+    transform: translate3d(-50%, -50%, 0);
+    background: rgba(white, 0.1);
+    border-radius: 100%;
+    transition: width 0.3s ease, height 0.3s ease;
+  }
+  &:focus,
+  &:hover {
+    background: darken(#920297, 7%);
+  }
+  &:active {
     &:after {
-      content: "";
-      position: absolute;
-      width: 0;
-      height: 0;
-      top: 50%;
-      left: 50%;
-      transform-style: flat;
-      transform: translate3d(-50%,-50%,0);
-      background: rgba(white,.1);
-      border-radius: 100%;
-      transition: width .3s ease, height .3s ease;
-    }
-    &:focus,
-    &:hover {
-        background: darken(#920297,7%);
-    }
-    &:active {
-      &:after {
-        width: 200px;
-        height: 200px;
-      }
+      width: 200px;
+      height: 200px;
     }
   }
+}

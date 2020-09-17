@@ -30,6 +30,7 @@ if (isset($_SESSION['id'])) {
 
   <!-- Custom Style   -->
   <link rel="stylesheet" href="assets/css/Style1.scss">
+  <link rel="stylesheet" href="assets/css/profileStyle.scss">
   <link rel="stylesheet" href="assets/css/headerStyle.css">
   <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -81,35 +82,48 @@ if (isset($_SESSION['id'])) {
       </div>
     </section>
 
-    <section id="blogs">
-
-      <div class="blog">
-        <h3 style="margin: 50px;">Developed By :</a></h3>
-        <div class="container">
-          <div class="owl-carousel owl-theme blog-post">
-            <div class="blog-content" data-aos="fade-right" data-aos-delay="200">
-              <img style="height: 280px;width:315px;" src="<?php echo BASE_URL . '/assets/images/ayoub.jpg'; ?>" alt="post-1">
-              <div class="blog-title">
-                <h3>MAHFOUD Ayoub</a></h3>
-                <span>Software engineering at ENSIAS</span>
-              </div>
-            </div>
-            <div class="blog-content" data-aos="fade-right" data-aos-delay="200">
-              <img style="height: 280px; width:315px;" src="<?php echo BASE_URL . '/assets/images/anas.jpeg'; ?>" alt="post-1">
-              <div class="blog-title">
-                <h3>AL-KOURAICHI Anas</a></h3>
-                <span>Software engineering at ENSIAS</span>
-              </div>
-            </div>
-          </div>
-          <div class="owl-navigation">
-            <span class="owl-nav-prev"><i class="fas fa-long-arrow-alt-left"></i></span>
-            <span class="owl-nav-next"><i class="fas fa-long-arrow-alt-right"></i></span>
-          </div>
-
+    <section style="background-image: url('assets/images/Abract01.png');background-repeat: no-repeat;background-position: right;height: 100vh;width: 100%;background-size: 65%;">
+    <h2 style="margin: 20px;">Developed By : </h2>
+    <div class="profile-card">
+      <div class="image-container">
+        <img src="<?php if (empty($photo)) {
+                    echo BASE_URL . "/chatRoom/upload/profile.jpg";
+                  } else {
+                    echo BASE_URL . '/assets/images/ayoub.jpg';
+                  } ?>" style="width : 90% ;height:370px; margin-top:20px; margin-left:20px">
+        <div style="margin: 10px;" class="title">
+        <hr style="margin-top: 10px;">
         </div>
       </div>
-    </section>
+      <div class="main-container">
+      <p ><i class="fas fa-user-tie info"></i> MAHFOUD Ayoub</p>
+        <p style="margin-top: 10px;"><i class="fa fa-envelope info"></i> mahfoud.ayb@gmail.com</p>
+        <p style="margin-top: 10px;"><i class="fa fa-phone info"></i> 0638271849</p>
+        <p style="margin-top: 10px;"><i class="fa fa-school info"></i> Software engineering at ENSIAS</p>
+        <hr style="margin-top: 10px;">
+      </div>
+    </div>
+    <div class="profile-card">
+      <div class="image-container">
+        <img src="<?php if (empty($photo)) {
+                    echo BASE_URL . "/chatRoom/upload/profile.jpg";
+                  } else {
+                    echo BASE_URL . '/assets/images/anas.jpg';
+                  } ?>" style="width : 90% ;height:370px;margin-top:20px; margin-left:20px">
+        <div style="margin: 10px;" class="title">
+        <hr style="margin-top: 10px;">
+        </div>
+      </div>
+      <div class="main-container">
+      <p><i class="fas fa-user-tie info"></i> AL-KOURAICHI Anas</p>
+        <p style="margin-top: 10px;"><i class="fa fa-envelope info"></i> anasalkouraichi@gmail.com</p>
+        <p style="margin-top: 10px;"><i class="fa fa-phone info"></i> 0766415839</p>
+        <p style="margin-top: 10px;"><i class="fa fa-school info"></i> Software engineering at ENSIAS</p>
+        <hr style="margin-top: 10px;">
+      </div>
+    </div>
+   
+  </section>
 
     <!-- --------------------- about content ----------------- -->
 
