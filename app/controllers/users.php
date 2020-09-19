@@ -27,12 +27,25 @@ function loginUser($user)
     $_SESSION['access'] = $user['access'];
     $_SESSION['message'] = 'You are now logged in';
     $_SESSION['type'] = 'success';
-
-    if ($_SESSION['access']==1) {
-        header('location: ' . BASE_URL . '/admin/dashboard.php');
+    
+    if ($user['access'] == 1) {
+        $_SESSION['id'] = $user['id'];
+?>
+        <script>
+            window.alert('Login Success, Welcome Admin!');
+            window.location.href = 'admin/dashboard.php';
+        </script>
+    <?php
     } else {
-        header('location: ' . BASE_URL . '/index.php');
+        $_SESSION['id'] = $user['id'];
+    ?>
+        <script>
+            window.alert('Login Success, Welcome User!');
+            window.location.href = 'index.php';
+        </script>
+<?php
     }
+
     exit();
 }
 
@@ -113,17 +126,14 @@ if (isset($_GET['id'])) {
 
 if (isset($_POST['login-btn'])) {
     $errors = validateLogin($_POST);
-    $fusername = $user['username'];
-    $password = $user["password"];
-	$fpassword=md5($password);
-    $query=mysqli_query($conn,"select * from `users` where username='$fusername' and password='$fpassword'");
+
     if (count($errors) === 0) {
+        $pwd = $_POST["password"];
+        $password = md5($pwd);
         $user = selectOne($table, ['username' => $_POST['username']]);
-        if(mysqli_num_rows($query)==0){
-                
+        if ($user && $password == $user['password']) {
             // LOG USER IN
-            loginUser($user);   
-            
+            loginUser($user);
         } else {
             array_push($errors, 'wrong credentials');
         }

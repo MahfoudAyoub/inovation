@@ -63,11 +63,11 @@ include(ROOT_PATH . "/app/controllers/users.php");
       </div> -->
       <div>
         <label>Username</label>
-        <input type="text" name="username" value="<?php echo $username; ?>" class="text-input">
+        <input type="text" name="username" value="<?php echo $username; ?>" class="text-input" required>
       </div>
       <div>
         <label>Password</label>
-        <input type="password" name="password" value="<?php echo $password; ?>" class="text-input">
+        <input type="password" name="password" value="<?php echo $password; ?>" class="text-input" required>
       </div>
       <div>
         <button type="submit" name="login-btn" class="btn1">Login</button>
