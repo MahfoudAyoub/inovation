@@ -55,26 +55,26 @@ else {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script>
-        $(document).ready(function() {
-            $(".profile .icon_wrap").click(function() {
-                $(this).parent().toggleClass("active");
-                $(".notifications").removeClass("active");
-            });
-
-            $(".notifications .icon_wrap").click(function() {
-                $(this).parent().toggleClass("active");
-                $(".profile").removeClass("active");
-            });
-
-            $(".show_all .link").click(function() {
-                $(".notifications").removeClass("active");
-                $(".popup").show();
-            });
-
-            $(".close").click(function() {
-                $(".popup").hide();
-            });
+    $(document).ready(function() {
+        $(".profile .icon_wrap").click(function() {
+            $(this).parent().toggleClass("active");
+            $(".notifications").removeClass("active");
         });
+
+        $(".notifications .icon_wrap").click(function() {
+            $(this).parent().toggleClass("active");
+            $(".profile").removeClass("active");
+        });
+
+        $(".show_all .link").click(function() {
+            $(".notifications").removeClass("active");
+            $(".popup").show();
+        });
+
+        $(".close").click(function() {
+            $(".popup").hide();
+        });
+    });
     </script>
 
 </head>
@@ -98,9 +98,9 @@ else {
             <div class="site-background" data-aos="fade-up" data-aos-delay="100">
                 <h3>ART & DESIGN</h3>
                 <h1>“Good design’s not about what medium you’re working in.</h1>
-                <h1>  It’s about thinking hard about what you want to do and what you </h1>
-                <h1>   have to work with before you start.”</h1>
-                
+                <h1> It’s about thinking hard about what you want to do and what you </h1>
+                <h1> have to work with before you start.”</h1>
+
                 <h3> – Susan Kare</h3>
             </div>
         </section>
@@ -116,14 +116,17 @@ else {
 
                     <div class="owl-carousel owl-theme blog-post">
                         <?php foreach ($posts as $post) : ?>
-                            <div class="blog-content" data-aos="fade-right" data-aos-delay="200">
-                                <img style="height: 200px;" src="<?php echo BASE_URL . '/assets/images/' . $post['image']; ?>" alt="post-1">
-                                <div class="blog-title">
-                                    <h3><a href="single.php?id=<?php echo $post['id']; ?>"><?php echo html_entity_decode(substr($post['title'], 0, 30) . '...'); ?></a></h3>
-                                    <button class="btn btn-blog"><a href="single.php?id=<?php echo $post['id']; ?>&username=<?php echo $post['username']; ?>">More</a></button>
-                                    <span><?php echo date('F j, Y', strtotime($post['created_at'])); ?></span>
-                                </div>
+                        <div class="blog-content" data-aos="fade-right" data-aos-delay="200">
+                            <img style="height: 200px;"
+                                src="<?php echo BASE_URL . '/assets/images/' . $post['image']; ?>" alt="post-1">
+                            <div class="blog-title">
+                                <h3><a href="single.php?id=<?php echo $post['id']; ?>"><?php echo $post['title']; ?></a>
+                                </h3>
+                                <button class="btn btn-blog"><a
+                                        href="single.php?id=<?php echo $post['id']; ?>&username=<?php echo $post['username']; ?>">More</a></button>
+                                <span><?php echo date('F j, Y', strtotime($post['created_at'])); ?></span>
                             </div>
+                        </div>
                         <?php endforeach; ?>
                     </div>
 
@@ -145,25 +148,31 @@ else {
                 <div class="posts">
                     <h2><?php echo $postTitle; ?></h2>
                     <?php foreach ($posts as $post) : ?>
-                        <div class="post-content" data-aos="zoom-in" data-aos-delay="200">
-                            <div class="post-image">
-                                <div>
-                                    <img src="<?php echo BASE_URL . '/assets/images/' . $post['image']; ?>" class="img" style="height: 400px; width: 800px; border-top-left-radius: 5px; border-top-right-radius: 5px;" alt="">
-                                </div>
-                                <div class="post-info flex-row">
-                                    <span><i class="fas fa-user text-gray"></i><?php echo $post['username']; ?></span>
-                                    <span><i class="fas fa-calendar-alt text-gray"></i><?php echo date('F j, Y', strtotime($post['created_at'])); ?></span>
-                                    <span>2 Commets</span>
-                                </div>
+                    <div class="post-content" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="post-image">
+                            <div>
+                                <img src="<?php echo BASE_URL . '/assets/images/' . $post['image']; ?>" class="img"
+                                    style="height: 400px; width: 800px; border-top-left-radius: 5px; border-top-right-radius: 5px;"
+                                    alt="">
                             </div>
-                            <div class="post-title">
-                                <a href="single.php?id=<?php echo $post['id']; ?>&username=<?php echo $post['username']; ?>"><?php echo $post['title']; ?></a>
-                                <p><?php echo  html_entity_decode(substr($post['body'], 0, 150) . '...'); ?>
-                                </p>
-                                <button style="margin: 20px;" class="btn post-btn"><a href="single.php?id=<?php echo $post['id']; ?>&username=<?php echo $post['username']; ?>">Read More </a> <i class="fas fa-arrow-right"></i></button>
+                            <div class="post-info flex-row">
+                                <span><i class="fas fa-user text-gray"></i><?php echo $post['username']; ?></span>
+                                <span><i
+                                        class="fas fa-calendar-alt text-gray"></i><?php echo date('F j, Y', strtotime($post['created_at'])); ?></span>
+                                <span>2 Commets</span>
                             </div>
                         </div>
-                        <hr>
+                        <div class="post-title">
+                            <a
+                                href="single.php?id=<?php echo $post['id']; ?>&username=<?php echo $post['username']; ?>"><?php echo $post['title']; ?></a>
+                            <p><?php echo  html_entity_decode(substr($post['body'], 0, 150) . '...'); ?>
+                            </p>
+                            <button style="margin: 20px;" class="btn post-btn"><a
+                                    href="single.php?id=<?php echo $post['id']; ?>&username=<?php echo $post['username']; ?>">Read
+                                    More </a> <i class="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                    <hr>
                     <?php endforeach; ?>
 
 
@@ -183,7 +192,8 @@ else {
                         <ul class="search-div">
                             <h2 style="margin-top: 10px;">Search</h2>
                             <form style="margin-top: 10px;" action="index.php" method="post">
-                                <input type="text" name="search-term" class="fas fa-chevron-right" class="text-input" placeholder="Search...">
+                                <input type="text" name="search-term" class="fas fa-chevron-right" class="text-input"
+                                    placeholder="Search...">
                             </form>
                         </ul>
                     </div>
@@ -193,9 +203,10 @@ else {
                         <h2 style="margin-top: 20px;">Category</h2>
                         <ul class="category-list">
                             <?php foreach ($topics as $key => $topic) : ?>
-                                <li class="list-items" data-aos="fade-left" data-aos-delay="100">
-                                    <a href="<?php echo BASE_URL . '/index.php?t_id=' . $topic['id'] . '&name=' . $topic['name'] ?>"><?php echo $topic['name']; ?></a>
-                                </li>
+                            <li class="list-items" data-aos="fade-left" data-aos-delay="100">
+                                <a
+                                    href="<?php echo BASE_URL . '/index.php?t_id=' . $topic['id'] . '&name=' . $topic['name'] ?>"><?php echo $topic['name']; ?></a>
+                            </li>
                             <?php endforeach; ?>
                         </ul>
                     </div>
@@ -204,20 +215,24 @@ else {
                         <h2>Popular Post</h2>
 
                         <?php foreach ($posts as $post) : ?>
-                            <div class="post-content" data-aos="flip-up" data-aos-delay="200">
-                                <div class="post-image">
-                                    <div>
-                                        <img style="height: 150px;" src="<?php echo BASE_URL . '/assets/images/' . $post['image']; ?>" class="img" alt="blog1">
-                                    </div>
-                                    <div class="post-info flex-row">
-                                        <span><i class="fas fa-calendar-alt text-gray"></i><?php echo date('F j, Y', strtotime($post['created_at'])); ?></span>
-                                        <span>2 Commets</span>
-                                    </div>
+                        <div class="post-content" data-aos="flip-up" data-aos-delay="200">
+                            <div class="post-image">
+                                <div>
+                                    <img style="height: 150px;"
+                                        src="<?php echo BASE_URL . '/assets/images/' . $post['image']; ?>" class="img"
+                                        alt="blog1">
                                 </div>
-                                <div class="post-title">
-                                    <a href="single.php?id=<?php echo $post['id']; ?>&username=<?php echo $post['username']; ?>"><?php echo html_entity_decode(substr($post['title'], 0, 50) . '...'); ?></a>
+                                <div class="post-info flex-row">
+                                    <span><i
+                                            class="fas fa-calendar-alt text-gray"></i><?php echo date('F j, Y', strtotime($post['created_at'])); ?></span>
+                                    <span>2 Commets</span>
                                 </div>
                             </div>
+                            <div class="post-title">
+                                <a
+                                    href="single.php?id=<?php echo $post['id']; ?>&username=<?php echo $post['username']; ?>"><?php echo html_entity_decode(substr($post['title'], 0, 50) . '...'); ?></a>
+                            </div>
+                        </div>
                         <?php endforeach; ?>
 
                     </div>
@@ -227,7 +242,8 @@ else {
                         <div class="tags flex-row">
 
                             <?php foreach ($topics as $key => $topic) : ?>
-                                <span class="tag" data-aos="flip-up" data-aos-delay="100"><a href="<?php echo BASE_URL . '/index.php?t_id=' . $topic['id'] . '&name=' . $topic['name'] ?>"><?php echo $topic['name']; ?></a></span>
+                            <span class="tag" data-aos="flip-up" data-aos-delay="100"><a
+                                    href="<?php echo BASE_URL . '/index.php?t_id=' . $topic['id'] . '&name=' . $topic['name'] ?>"><?php echo $topic['name']; ?></a></span>
                             <?php endforeach; ?>
 
                         </div>

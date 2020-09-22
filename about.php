@@ -2,9 +2,9 @@
 include("path.php");
 include(ROOT_PATH . "/app/controllers/topics.php");
 if (isset($_SESSION['id'])) {
-  $sq = mysqli_query($conn, "select * from `users` where id='" . $_SESSION['id'] . "'");
-  $srow = mysqli_fetch_array($sq);
-  $photo = $srow['photo'];
+    $sq = mysqli_query($conn, "select * from `users` where id='" . $_SESSION['id'] . "'");
+    $srow = mysqli_fetch_array($sq);
+    $photo = $srow['photo'];
 }
 ?>
 
@@ -87,11 +87,8 @@ if (isset($_SESSION['id'])) {
             <h2 style="margin: 20px;">Developed By : </h2>
             <div class="profile-card">
                 <div class="image-container">
-                    <img src="<?php if (empty($photo)) {
-                      echo BASE_URL . "/chatRoom/upload/profile.jpg";
-                    } else {
-                      echo BASE_URL . '/assets/images/ayoub.jpg';
-                    } ?>" style="width : 90% ;height:370px; margin-top:20px; margin-left:20px">
+                    <img src="<?php echo BASE_URL . '/assets/images/ayoub.jpg'; ?>"
+                        style="width : 90% ;height:370px; margin-top:20px; margin-left:20px">
                     <div style="margin: 10px;" class="title">
                         <hr style="margin-top: 10px;">
                     </div>
@@ -106,11 +103,8 @@ if (isset($_SESSION['id'])) {
             </div>
             <div class="profile-card">
                 <div class="image-container">
-                    <img src="<?php if (empty($photo)) {
-                      echo BASE_URL . "/chatRoom/upload/profile.jpg";
-                    } else {
-                      echo BASE_URL . '/assets/images/anas.jpg';
-                    } ?>" style="width : 90% ;height:370px;margin-top:20px; margin-left:20px">
+                    <img src="<?php echo BASE_URL . '/assets/images/anas.jpg'; ?>"
+                        style="width : 90% ;height:370px;margin-top:20px; margin-left:20px">
                     <div style="margin: 10px;" class="title">
                         <hr style="margin-top: 10px;">
                     </div>
